@@ -1,0 +1,4 @@
+# teamv
+
+/src
+/docs
