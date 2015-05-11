@@ -1,6 +1,6 @@
 ﻿using Microsoft.Practices.ServiceLocation;
 
-namespace MobilePoll.Infrastructure
+namespace MobilePoll.Infrastructure.Bus
 {
     public interface IMessageDispatcher
     {

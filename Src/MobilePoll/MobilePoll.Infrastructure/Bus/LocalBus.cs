@@ -1,21 +1,22 @@
 ﻿using System;
 using MobilePoll.Infrastructure.Ioc;
 using MobilePoll.Infrastructure.Logging;
+using MobilePoll.Infrastructure.Persistence;
 
-namespace MobilePoll.Infrastructure
+namespace MobilePoll.Infrastructure.Bus
 {
-    public class LocalBus : ILocalBus
+    internal class LocalBus : ILocalBus
     {
         private static readonly ILogger Logger = LogFactory.BuildLogger(typeof(LocalBus));
         private readonly IServiceContainer serviceContainer;
         private readonly IMessageDispatcher dispatcher;
-        private readonly IUnitOfWork unitOfWork;
 
-        public LocalBus(IServiceContainer serviceContainer, IMessageDispatcher dispatcher, IUnitOfWork unitOfWork)
+        public IUnitOfWork UnitOfWork { get; set; }
+
+        public LocalBus(IServiceContainer serviceContainer, IMessageDispatcher dispatcher)
         {
             this.serviceContainer = serviceContainer;
             this.dispatcher = dispatcher;
-            this.unitOfWork = unitOfWork;
         }
 
         public void Execute(ICommand command)
@@ -28,18 +29,22 @@ namespace MobilePoll.Infrastructure
                 {
                     ServiceLocator.Current.SetCurrentLifetimeScope(scope);
 
+                    dispatcher.DispatchToHandlers(command, serviceContainer);
 
-                    unitOfWork.Commit();
+                    if(UnitOfWork != null)
+                        UnitOfWork.Commit();
                 }
             }
             catch (Exception ex)
             {
-                unitOfWork.Rollback();;
+                if (UnitOfWork != null)
+                    UnitOfWork.Rollback();
+                
                 Logger.Error(ex.GetFullExceptionMessage());
             }
             finally
             {
-                ServiceLocator.Current.SetCurrentLifetimeScope(null);
+                ServiceLocator.Current.SetCurrentLifetimeScope(new DisposedProvider());
             }
         }
 

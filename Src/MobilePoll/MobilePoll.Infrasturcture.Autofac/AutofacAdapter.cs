@@ -42,7 +42,7 @@ namespace MobilePoll.Infrasturcture.Autofac
             Dispose(false);
         }
 
-        public IServiceLocator BuildContainer()
+        public IServiceContainer BuildContainer()
         {
             return this;
         }
@@ -52,7 +52,7 @@ namespace MobilePoll.Infrasturcture.Autofac
             return new AutofacAdapter(LifetimeScope.BeginLifetimeScope());
         }
 
-        public void RegisterModule(IRegisterDependencies module)
+        public void RegisterModule(IDependencyRegistrar module)
         {
             module.Register(this);
         }

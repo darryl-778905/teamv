@@ -4,17 +4,18 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{833908F6-6ED4-430D-9336-6053B061294B}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{DFF66AE6-E66B-4367-88B7-DC757C47B708}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MobilePoll.Infrastructure</RootNamespace>
-    <AssemblyName>MobilePoll.Infrastructure</AssemblyName>
+    <RootNamespace>MobilePoll.Infrastructure.TestShell</RootNamespace>
+    <AssemblyName>MobilePoll.Infrastructure.TestShell</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
     <RestorePackages>true</RestorePackages>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,6 +25,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -32,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
@@ -40,7 +45,6 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -49,42 +53,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bus\InvalidMessageTypeException.cs" />
-    <Compile Include="Bus\MessageDispatcher.cs" />
-    <Compile Include="Config\AssemblyScanner.cs" />
-    <Compile Include="Bus\IHandleEvent.cs" />
-    <Compile Include="Bus\IHandleCommand.cs" />
-    <Compile Include="Bus\LocalBus.cs" />
-    <Compile Include="Bus\ICommand.cs" />
-    <Compile Include="Bus\IMessageDispatcher.cs" />
-    <Compile Include="Bus\IEvent.cs" />
-    <Compile Include="Bus\ILocalBus.cs" />
-    <Compile Include="Config\ComponentScanner.cs" />
-    <Compile Include="Config\ConfigurationSettingNotFoundException.cs" />
-    <Compile Include="Config\DefaultDependencyRegistrar.cs" />
-    <Compile Include="Config\Environment.cs" />
-    <Compile Include="Ioc\ComponentRegistrationException.cs" />
-    <Compile Include="Ioc\DependencyLifecycle.cs" />
-    <Compile Include="ExceptionExtensions.cs" />
-    <Compile Include="Ioc\DisposedProvider.cs" />
-    <Compile Include="Ioc\IContainerBuilder.cs" />
-    <Compile Include="Ioc\IServiceContainer.cs" />
-    <Compile Include="Ioc\ServiceLocator.cs" />
-    <Compile Include="Persistence\IUnitOfWork.cs" />
-    <Compile Include="Logging\ConsoleWindowLogger.cs" />
-    <Compile Include="Logging\ILogger.cs" />
-    <Compile Include="Ioc\IDependencyRegistrar.cs" />
-    <Compile Include="Logging\LogFactory.cs" />
-    <Compile Include="Logging\LoggingExtensionMethods.cs" />
-    <Compile Include="Logging\LogLevel.cs" />
-    <Compile Include="Guard.cs" />
+    <Compile Include="Messages\GreetedUser.cs" />
+    <Compile Include="Handlers\HelloUserHandler.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Serialization\ISerializer.cs" />
-    <Compile Include="Serialization\JsonObjectSerializer.cs" />
-    <Compile Include="TypeEqualityComparer.cs" />
+    <Compile Include="Messages\SayHelloToUser.cs" />
+    <Compile Include="Stubs\UnitOfWorkStub.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MobilePoll.Infrastructure\MobilePoll.Infrastructure.csproj">
+      <Project>{833908F6-6ED4-430D-9336-6053B061294B}</Project>
+      <Name>MobilePoll.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MobilePoll.Infrasturcture.Autofac\MobilePoll.Infrasturcture.Autofac.csproj">
+      <Project>{0638B7CE-9B65-4985-845F-CC745AACE251}</Project>
+      <Name>MobilePoll.Infrasturcture.Autofac</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

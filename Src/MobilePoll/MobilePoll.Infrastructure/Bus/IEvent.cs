@@ -1,4 +1,4 @@
-namespace MobilePoll.Infrastructure
+namespace MobilePoll.Infrastructure.Bus
 {
     public interface IEvent
     {

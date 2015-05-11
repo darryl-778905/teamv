@@ -1,6 +1,6 @@
 ﻿namespace MobilePoll.Infrastructure.Ioc
 {
-    public interface IRegisterDependencies
+    public interface IDependencyRegistrar
     {
         void Register(IContainerBuilder containerBuilder);
     }

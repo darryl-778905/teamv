@@ -1,4 +1,4 @@
-﻿namespace MobilePoll.Infrastructure
+﻿namespace MobilePoll.Infrastructure.Persistence
 {
     public interface IUnitOfWork 
     {
