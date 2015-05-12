@@ -40,8 +40,10 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,14 +56,14 @@
     <Compile Include="Config\AssemblyScanner.cs" />
     <Compile Include="Bus\IHandleEvent.cs" />
     <Compile Include="Bus\IHandleCommand.cs" />
-    <Compile Include="Bus\LocalBus.cs" />
+    <Compile Include="InMemory\InMemoryBus.cs" />
     <Compile Include="Bus\ICommand.cs" />
     <Compile Include="Bus\IMessageDispatcher.cs" />
     <Compile Include="Bus\IEvent.cs" />
     <Compile Include="Bus\ILocalBus.cs" />
     <Compile Include="Config\ComponentScanner.cs" />
     <Compile Include="Config\ConfigurationSettingNotFoundException.cs" />
-    <Compile Include="Config\DefaultDependencyRegistrar.cs" />
+    <Compile Include="Config\InMemoryConfiguration.cs" />
     <Compile Include="Config\Environment.cs" />
     <Compile Include="Ioc\ComponentRegistrationException.cs" />
     <Compile Include="Ioc\DependencyLifecycle.cs" />
@@ -70,10 +72,15 @@
     <Compile Include="Ioc\IContainerBuilder.cs" />
     <Compile Include="Ioc\IServiceContainer.cs" />
     <Compile Include="Ioc\ServiceLocator.cs" />
+    <Compile Include="InMemory\InMemoryDataStore.cs" />
+    <Compile Include="InMemory\InMemoryRepository.cs" />
+    <Compile Include="InMemory\InMemoryUnitOfWork.cs" />
+    <Compile Include="Persistence\IRepository.cs" />
+    <Compile Include="Persistence\IRepositoryFactory.cs" />
     <Compile Include="Persistence\IUnitOfWork.cs" />
     <Compile Include="Logging\ConsoleWindowLogger.cs" />
     <Compile Include="Logging\ILogger.cs" />
-    <Compile Include="Ioc\IDependencyRegistrar.cs" />
+    <Compile Include="Ioc\IConfigurationModule.cs" />
     <Compile Include="Logging\LogFactory.cs" />
     <Compile Include="Logging\LoggingExtensionMethods.cs" />
     <Compile Include="Logging\LogLevel.cs" />

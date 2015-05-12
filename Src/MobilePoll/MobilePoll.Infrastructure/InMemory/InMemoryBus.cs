@@ -1,19 +1,20 @@
 ﻿using System;
+using MobilePoll.Infrastructure.Bus;
 using MobilePoll.Infrastructure.Ioc;
 using MobilePoll.Infrastructure.Logging;
 using MobilePoll.Infrastructure.Persistence;
 
-namespace MobilePoll.Infrastructure.Bus
+namespace MobilePoll.Infrastructure.InMemory
 {
-    internal class LocalBus : ILocalBus
+    internal class InMemoryBus : ILocalBus
     {
-        private static readonly ILogger Logger = LogFactory.BuildLogger(typeof(LocalBus));
+        private static readonly ILogger Logger = LogFactory.BuildLogger(typeof(InMemoryBus));
         private readonly IServiceContainer serviceContainer;
         private readonly IMessageDispatcher dispatcher;
 
         public IUnitOfWork UnitOfWork { get; set; }
 
-        public LocalBus(IServiceContainer serviceContainer, IMessageDispatcher dispatcher)
+        public InMemoryBus(IServiceContainer serviceContainer, IMessageDispatcher dispatcher)
         {
             this.serviceContainer = serviceContainer;
             this.dispatcher = dispatcher;

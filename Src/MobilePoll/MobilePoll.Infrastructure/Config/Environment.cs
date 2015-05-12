@@ -20,7 +20,7 @@ namespace MobilePoll.Infrastructure.Config
             ComponentScanner.Scan(containerBuilder);
 
             containerBuilder.RegisterSingleton(containerBuilder);
-            containerBuilder.RegisterModule(new DefaultDependencyRegistrar());
+            containerBuilder.RegisterConfigurationModule(new InMemoryConfiguration());
             container = containerBuilder.BuildContainer();
         }
 

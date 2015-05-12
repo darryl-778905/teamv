@@ -1,16 +1,20 @@
 using MobilePoll.Infrastructure.Bus;
+using MobilePoll.Infrastructure.InMemory;
 using MobilePoll.Infrastructure.Ioc;
 using MobilePoll.Infrastructure.Serialization;
 
 namespace MobilePoll.Infrastructure.Config
 {
-    internal class DefaultDependencyRegistrar : IDependencyRegistrar
+    public class InMemoryConfiguration : IConfigurationModule
     {
-        public void Register(IContainerBuilder containerBuilder)
+        public void Configure(IContainerBuilder containerBuilder)
         {
-            containerBuilder.RegisterType<LocalBus>(DependencyLifecycle.SingleInstance);
             containerBuilder.RegisterType<JsonObjectSerializer>(DependencyLifecycle.SingleInstance);
+            containerBuilder.RegisterType<InMemoryUnitOfWork>(DependencyLifecycle.SingleInstance);
+            
+            containerBuilder.RegisterType<InMemoryBus>(DependencyLifecycle.InstancePerUnitOfWork);
             containerBuilder.RegisterType<MessageDispatcher>(DependencyLifecycle.InstancePerUnitOfWork);
+            
         }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using System;
-using System.Runtime.InteropServices.ComTypes;
+using System.Linq;
 using MobilePoll.Infrastructure.Bus;
 using MobilePoll.Infrastructure.Config;
 using MobilePoll.Infrastructure.Ioc;
+using MobilePoll.Infrastructure.Persistence;
+using MobilePoll.Infrastructure.TestShell.DataModel;
 using MobilePoll.Infrastructure.TestShell.Messages;
-using MobilePoll.Infrastructure.TestShell.Stubs;
 using MobilePoll.Infrasturcture.Autofac;
 
 namespace MobilePoll.Infrastructure.TestShell
@@ -13,16 +14,31 @@ namespace MobilePoll.Infrastructure.TestShell
     {
         static void Main(string[] args)
         {
-            IContainerBuilder containerBuilder = new AutofacAdapter();
-            containerBuilder.RegisterType<UnitOfWorkStub>(DependencyLifecycle.SingleInstance);
-            Configuration.Initialize(containerBuilder);
+            ILocalBus bus = Intialize();
 
-            ILocalBus bus = Configuration.Bus;
             var command = new SayHelloToUser(Environment.UserName);
             bus.Execute(command);
 
+            using (var scope = Configuration.RootContainer.BeginLifetimeScope())
+            {
+                var repositoryFactory = scope.GetInstance<IRepositoryFactory>();
+
+                var repository = repositoryFactory.GetRepository<GreetingLog>();
+
+                var log = repository.Get(1);
+                Console.WriteLine("Greeting log: Greeted {0} at {1}", log.Name, log.OccuredAt.ToShortTimeString());
+            }
+
             Console.WriteLine("\nPress any key to exit...");
             Console.ReadKey();
+        }
+
+        private static ILocalBus Intialize()
+        {
+            IContainerBuilder containerBuilder = new AutofacAdapter();
+            containerBuilder.RegisterConfigurationModule(new InMemoryConfiguration());
+            Configuration.Initialize(containerBuilder);
+            return Configuration.Bus;
         }
     }
 }

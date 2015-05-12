@@ -40,14 +40,14 @@ namespace MobilePoll.Infrastructure.Bus
 
         private static void DispatchCommandToHandler(object message, IServiceLocator serviceLocator, Type messageType)
         {
-            Type commandHandlerType = CommandHandlerGenericType.MakeGenericType(new[] {messageType});
+            Type commandHandlerType = CommandHandlerGenericType.MakeGenericType(messageType);
             object commandHandler = serviceLocator.GetInstance(commandHandlerType);
             ((dynamic)commandHandler).Execute((dynamic)message);
         }
 
         private static void DispatchEventToHandlers(object message, IServiceLocator serviceLocator, Type messageType)
         {
-            Type eventHandlerType = EventHandlerGenericType.MakeGenericType(new[] {messageType});
+            Type eventHandlerType = EventHandlerGenericType.MakeGenericType(messageType);
             IEnumerable<object> eventHandlers = serviceLocator.GetAllInstances(eventHandlerType);
 
             foreach (var eventHandler in eventHandlers)

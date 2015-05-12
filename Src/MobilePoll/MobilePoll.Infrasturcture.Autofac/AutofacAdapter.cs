@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Autofac;
 using Autofac.Builder;
@@ -12,6 +13,7 @@ using MobilePoll.Infrastructure.Logging;
 
 namespace MobilePoll.Infrasturcture.Autofac
 {
+    [DebuggerNonUserCode, DebuggerStepThrough]
     public class AutofacAdapter : ServiceLocatorImplBase, IContainerBuilder, IServiceContainer
     {
         private static readonly ILogger Logger = LogFactory.BuildLogger(typeof(AutofacAdapter));
@@ -52,9 +54,9 @@ namespace MobilePoll.Infrasturcture.Autofac
             return new AutofacAdapter(LifetimeScope.BeginLifetimeScope());
         }
 
-        public void RegisterModule(IDependencyRegistrar module)
+        public void RegisterConfigurationModule(IConfigurationModule module)
         {
-            module.Register(this);
+            module.Configure(this);
         }
 
         public void RegisterSingleton(object instance)

@@ -10,6 +10,6 @@ namespace MobilePoll.Infrastructure.Ioc
         void RegisterType(Type type, DependencyLifecycle dependencyLifecycle);
         void RegisterType(Type type);
         void RegisterSingleton(object instance);
-        void RegisterModule(IDependencyRegistrar module);
+        void RegisterConfigurationModule(IConfigurationModule module);
     }
 }
