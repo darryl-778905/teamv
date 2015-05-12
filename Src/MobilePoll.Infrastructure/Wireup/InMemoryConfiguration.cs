@@ -11,10 +11,9 @@ namespace MobilePoll.Infrastructure.Wireup
         {
             containerBuilder.RegisterType<JsonObjectSerializer>(DependencyLifecycle.SingleInstance);
             containerBuilder.RegisterType<InMemoryUnitOfWork>(DependencyLifecycle.SingleInstance);
-            
+            containerBuilder.RegisterType<MessageDispatcher>(DependencyLifecycle.SingleInstance);
+
             containerBuilder.RegisterType<InMemoryBus>(DependencyLifecycle.InstancePerUnitOfWork);
-            containerBuilder.RegisterType<MessageDispatcher>(DependencyLifecycle.InstancePerUnitOfWork);
-            
         }
     }
 }

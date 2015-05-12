@@ -15,7 +15,7 @@ namespace MobilePoll.Infrastructure.Ioc
     [DebuggerNonUserCode, DebuggerStepThrough]
     public class AutofacAdapter : ServiceLocatorImplBase, IContainerBuilder, IServiceContainer
     {
-        private static readonly ILogger Logger = LogFactory.BuildLogger(typeof(AutofacAdapter));
+        private static readonly ILog Logger = LogFactory.BuildLogger(typeof(AutofacAdapter));
 
         protected readonly ILifetimeScope LifetimeScope;
         private bool disposed;

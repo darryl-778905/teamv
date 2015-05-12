@@ -1,6 +1,6 @@
 ﻿namespace MobilePoll.Logging
 {
-    public interface ILogger
+    public interface ILog
     {
         void Debug(string message, params object[] values);
         void Info(string message, params object[] values);

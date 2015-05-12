@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Microsoft.Practices.ServiceLocation;
 using MobilePoll.Bus;
 
 namespace MobilePoll.Infrastructure.Bus
 {
+    [DebuggerNonUserCode, DebuggerStepThrough]
     internal class MessageDispatcher : IMessageDispatcher
     {
         private static readonly Type CommandHandlerGenericType = typeof(IHandleCommand<>);

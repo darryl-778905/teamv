@@ -16,9 +16,9 @@ namespace MobilePoll.Logging
         /// <summary>
         /// Gets or sets the log builder of the configured logger.  This should be invoked to return a new logging instance.
         /// </summary>
-        public static Func<Type, ILogger> BuildLogger { get; set; }
+        public static Func<Type, ILog> BuildLogger { get; set; }
 
-        private class NullLogger : ILogger
+        private class NullLogger : ILog
         {
             private readonly Type typeToLog;
 

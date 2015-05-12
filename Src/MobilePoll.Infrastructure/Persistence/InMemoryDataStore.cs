@@ -1,11 +1,12 @@
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization;
 
 namespace MobilePoll.Infrastructure.Persistence
 {
     [DataContract]
-    //[DebuggerNonUserCode, DebuggerStepThrough
+    [DebuggerNonUserCode, DebuggerStepThrough]
     public class InMemoryDataStore
     {
         [DataMember]

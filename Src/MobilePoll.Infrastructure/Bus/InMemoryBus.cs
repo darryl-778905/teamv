@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using MobilePoll.Bus;
 using MobilePoll.Infrastructure.Ioc;
 using MobilePoll.Ioc;
@@ -7,9 +8,10 @@ using MobilePoll.Persistence;
 
 namespace MobilePoll.Infrastructure.Bus
 {
+    [DebuggerNonUserCode, DebuggerStepThrough]
     internal class InMemoryBus : ILocalBus
     {
-        private static readonly ILogger Logger = LogFactory.BuildLogger(typeof(InMemoryBus));
+        private static readonly ILog Logger = LogFactory.BuildLogger(typeof(InMemoryBus));
         private readonly IServiceContainer serviceContainer;
         private readonly IMessageDispatcher dispatcher;
 

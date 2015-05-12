@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -9,7 +10,7 @@ using MobilePoll.Persistence;
 
 namespace MobilePoll.Infrastructure.Persistence
 {
-    //[DebuggerNonUserCode, DebuggerStepThrough]
+    [DebuggerNonUserCode, DebuggerStepThrough]
     internal class InMemoryRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         private readonly InMemoryDataStore dataStore;
@@ -27,9 +28,18 @@ namespace MobilePoll.Infrastructure.Persistence
 
         private PropertyInfo GetIdentityPropertyInformation()
         {
-            return typeof(TEntity)
-                .GetProperties()
-                .Single(propertyInfo => Attribute.IsDefined(propertyInfo, typeof(KeyAttribute)));
+            try
+            {
+                return typeof (TEntity)
+                    .GetProperties()
+                    .Single(propertyInfo => propertyInfo.Name.Equals("Id", StringComparison.InvariantCultureIgnoreCase));
+            }
+            catch (InvalidOperationException)
+            {
+                return typeof (TEntity)
+                    .GetProperties()
+                    .Single(propertyInfo => Attribute.IsDefined(propertyInfo, typeof (KeyAttribute)));
+            }
         }
 
         public TEntity Get(int id)

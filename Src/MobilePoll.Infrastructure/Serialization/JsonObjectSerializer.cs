@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 using System.Runtime.Serialization.Formatters;
 using System.Text;
@@ -8,6 +9,7 @@ using Newtonsoft.Json.Converters;
 
 namespace MobilePoll.Infrastructure.Serialization
 {
+    [DebuggerNonUserCode, DebuggerStepThrough]
     internal class JsonObjectSerializer : ISerializer
     {
         static readonly JsonSerializerSettings SerializerSettings = new JsonSerializerSettings

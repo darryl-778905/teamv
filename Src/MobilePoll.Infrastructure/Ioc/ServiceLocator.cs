@@ -1,10 +1,12 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 using Microsoft.Practices.ServiceLocation;
 
 namespace MobilePoll.Infrastructure.Ioc
 {
+    [DebuggerNonUserCode, DebuggerStepThrough]
     public class ServiceLocator : ServiceLocatorImplBase
     {
         private static readonly ThreadLocal<ServiceLocator> Instance = new ThreadLocal<ServiceLocator>();

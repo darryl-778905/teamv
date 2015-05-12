@@ -10,7 +10,7 @@ namespace MobilePoll.Environment
     internal class AssemblyScanner : IDisposable, IEqualityComparer<Type>
     {        
         private static readonly List<Func<string, bool>> ExclusionRules = new List<Func<string, bool>>();
-        private static readonly ILogger Logger = LogFactory.BuildLogger(typeof(AssemblyScanner));
+        private static readonly ILog Logger = LogFactory.BuildLogger(typeof(AssemblyScanner));
 
         private readonly List<Assembly> assemblies = new List<Assembly>();
         private readonly List<Type> types = new List<Type>();

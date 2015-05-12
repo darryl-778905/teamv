@@ -1,9 +1,11 @@
 using System;
+using System.Diagnostics;
 using MobilePoll.Logging;
 
 namespace MobilePoll.Infrastructure.Logging
 {
-    public class ConsoleWindowLogger : ILogger
+    [DebuggerNonUserCode, DebuggerStepThrough]
+    public class ConsoleWindowLogger : ILog
     {
         private static readonly object Sync = new object();
         private readonly ConsoleColor originalColor = Console.ForegroundColor;

@@ -20,11 +20,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilePoll.Infrastructure.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilePoll.Infrastructure.TestShell", "MobilePoll.Infrastructure.TestShell\MobilePoll.Infrastructure.TestShell.csproj", "{DFF66AE6-E66B-4367-88B7-DC757C47B708}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilePoll.Web.Api", "MobilePoll.Web.Api\MobilePoll.Web.Api.csproj", "{2DFBCE54-387D-4ECB-9E59-BD18F45C09A0}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilePoll.DataModel", "MobilePoll.DataModel\MobilePoll.DataModel.csproj", "{628462C6-A436-4603-B75E-06C1DA54459D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilePoll.Application", "MobilePoll.Application\MobilePoll.Application.csproj", "{5261529F-F2E2-490C-9938-E98CA20F22B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobilePoll.Web.Api", "MobilePoll.Web.Api\MobilePoll.Web.Api.csproj", "{D7AAB280-0A1D-4493-A654-E7728F687BE3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -78,16 +78,6 @@ Global
 		{DFF66AE6-E66B-4367-88B7-DC757C47B708}.Release|ARM.ActiveCfg = Release|Any CPU
 		{DFF66AE6-E66B-4367-88B7-DC757C47B708}.Release|x64.ActiveCfg = Release|Any CPU
 		{DFF66AE6-E66B-4367-88B7-DC757C47B708}.Release|x86.ActiveCfg = Release|Any CPU
-		{2DFBCE54-387D-4ECB-9E59-BD18F45C09A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2DFBCE54-387D-4ECB-9E59-BD18F45C09A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2DFBCE54-387D-4ECB-9E59-BD18F45C09A0}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{2DFBCE54-387D-4ECB-9E59-BD18F45C09A0}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{2DFBCE54-387D-4ECB-9E59-BD18F45C09A0}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{2DFBCE54-387D-4ECB-9E59-BD18F45C09A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2DFBCE54-387D-4ECB-9E59-BD18F45C09A0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2DFBCE54-387D-4ECB-9E59-BD18F45C09A0}.Release|ARM.ActiveCfg = Release|Any CPU
-		{2DFBCE54-387D-4ECB-9E59-BD18F45C09A0}.Release|x64.ActiveCfg = Release|Any CPU
-		{2DFBCE54-387D-4ECB-9E59-BD18F45C09A0}.Release|x86.ActiveCfg = Release|Any CPU
 		{628462C6-A436-4603-B75E-06C1DA54459D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{628462C6-A436-4603-B75E-06C1DA54459D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{628462C6-A436-4603-B75E-06C1DA54459D}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -108,6 +98,16 @@ Global
 		{5261529F-F2E2-490C-9938-E98CA20F22B6}.Release|ARM.ActiveCfg = Release|Any CPU
 		{5261529F-F2E2-490C-9938-E98CA20F22B6}.Release|x64.ActiveCfg = Release|Any CPU
 		{5261529F-F2E2-490C-9938-E98CA20F22B6}.Release|x86.ActiveCfg = Release|Any CPU
+		{D7AAB280-0A1D-4493-A654-E7728F687BE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D7AAB280-0A1D-4493-A654-E7728F687BE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D7AAB280-0A1D-4493-A654-E7728F687BE3}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{D7AAB280-0A1D-4493-A654-E7728F687BE3}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{D7AAB280-0A1D-4493-A654-E7728F687BE3}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{D7AAB280-0A1D-4493-A654-E7728F687BE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D7AAB280-0A1D-4493-A654-E7728F687BE3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D7AAB280-0A1D-4493-A654-E7728F687BE3}.Release|ARM.ActiveCfg = Release|Any CPU
+		{D7AAB280-0A1D-4493-A654-E7728F687BE3}.Release|x64.ActiveCfg = Release|Any CPU
+		{D7AAB280-0A1D-4493-A654-E7728F687BE3}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

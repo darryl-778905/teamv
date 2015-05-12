@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using MobilePoll.Infrastructure.Serialization;
 using MobilePoll.Persistence;
 
@@ -6,7 +7,7 @@ namespace MobilePoll.Infrastructure.Persistence
     /// <summary>
     /// Normally a real unit of work would track changes to our persistence store and handle actual transactions. 
     /// </summary>
-    //[DebuggerNonUserCode, DebuggerStepThrough]
+    [DebuggerNonUserCode, DebuggerStepThrough]
     internal sealed class InMemoryUnitOfWork : IUnitOfWork, IRepositoryFactory
     {
         private static readonly JsonObjectSerializer Serializer;
