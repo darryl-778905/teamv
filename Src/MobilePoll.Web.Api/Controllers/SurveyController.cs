@@ -23,51 +23,24 @@ namespace MobilePoll.Web.Api.Controllers
         } 
 
         // GET api/values/5 
-        public string Get(int id)
+        public Survey Get(int id)
         {
-            BuildTestSurvey(id);
-            return String.Format("Survey {0} added", id);
+            return surveys.Get(id);
         }        
 
         // POST api/values 
-        public void Post([FromBody]string value) 
+        public void Post([FromBody]Survey value) 
         { 
         } 
 
         // PUT api/values/5 
-        public void Put(int id, [FromBody]string value) 
+        public void Put(int id, [FromBody]Survey value) 
         { 
         } 
 
         // DELETE api/values/5 
         public void Delete(int id) 
         { 
-        }
-
-        private void BuildTestSurvey(int id)
-        {
-            SurveyQuestion[] questions = new[]
-            {
-                new SurveyQuestion
-                {
-                    Id = id,
-                    Answers = new string[0],
-                    Limits = 0,
-                    Mandatory = true,
-                    Options = new string[0],
-                    Type = "FreeForm",
-                    Question = "What do you like to eat on toast and why?"
-                }
-            };
-
-            Survey survey = new Survey
-            {
-                Description = "Some Description",
-                Name = "My Survey",
-                Questions = questions
-            };
-
-            surveys.Add(survey);
         }
     }
 }

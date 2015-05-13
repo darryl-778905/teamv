@@ -29,9 +29,9 @@ namespace MobilePoll.Infrastructure.Bus
 
             try
             {
-                using (var scope = serviceContainer.BeginLifetimeScope())
+                using (var lifetimeScope = serviceContainer.BeginLifetimeScope())
                 {
-                    ServiceLocator.Current.SetCurrentLifetimeScope(scope);
+                    ServiceLocator.Current.SetCurrentLifetimeScope(lifetimeScope);
 
                     dispatcher.DispatchToHandlers(command, serviceContainer);
 

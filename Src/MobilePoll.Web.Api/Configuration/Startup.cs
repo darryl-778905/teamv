@@ -1,7 +1,11 @@
 ﻿using System.Web.Http;
+using MobilePoll.DataModel;
+using MobilePoll.DataModel.TestData;
 using MobilePoll.Infrastructure.Logging;
 using MobilePoll.Infrastructure.Wireup;
+using MobilePoll.Ioc;
 using MobilePoll.Logging;
+using MobilePoll.Persistence;
 using MobilePoll.Web.Api.Filters;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
@@ -12,6 +16,8 @@ namespace MobilePoll.Web.Api.Configuration
 {
     public class Startup
     {
+        public static readonly IConfigurationModule DefaultConfiguration = new InMemoryConfiguration();
+
         // This code configures Web API. The Startup class is specified as a type
         // parameter in the WebApp.Start method.
         public void Configuration(IAppBuilder appBuilder)
@@ -22,6 +28,7 @@ namespace MobilePoll.Web.Api.Configuration
             ConfigureJsonResponseFormat(config);
             ConfigureDefaultRoutes(config);
             IntializeIoc(config);
+            IntializeDebugData();
             appBuilder.UseWebApi(config);
         }
 
@@ -53,9 +60,27 @@ namespace MobilePoll.Web.Api.Configuration
         private static void IntializeIoc(HttpConfiguration config)
         {
             var autofacAdapter = new WebApiAutofacAdapter();
-            autofacAdapter.RegisterConfigurationModule(new InMemoryConfiguration());  //this is where we will change our environment configuration settings.
+            autofacAdapter.RegisterConfigurationModule(DefaultConfiguration);  //this is where we will change our environment configuration settings.
             MobilePoll.Environment.Configuration.Initialize(autofacAdapter);
             config.DependencyResolver = autofacAdapter.GetApiDependencyResolver();
         }
+
+        /// <summary>
+        /// Configure debug surveys, this will be removed once we can populate 
+        /// </summary>
+        private void IntializeDebugData()
+        {
+            using (var lifetimeScope = Environment.Configuration.RootContainer.BeginLifetimeScope())
+            {
+                IRepositoryFactory repositoryFactory = lifetimeScope.GetInstance<IRepositoryFactory>();
+                IRepository<Survey> surveys = repositoryFactory.GetRepository<Survey>();
+
+                foreach (var defaultSurvey in DefaultSurveys.Surveys)
+                {
+                    surveys.Add(defaultSurvey);
+                }
+            }
+        }
+
     }
 }

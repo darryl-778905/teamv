@@ -42,6 +42,7 @@
     <Compile Include="Survey.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SurveyQuestion.cs" />
+    <Compile Include="TestData\DefaultSurveys.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Readme.txt" />
