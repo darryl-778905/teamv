@@ -31,6 +31,7 @@ namespace MobilePoll.Web.Api.Controllers
         // POST api/values 
         public void Post([FromBody]Survey value) 
         { 
+            surveys.Add(value);
         } 
 
         // PUT api/values/5 

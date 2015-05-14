@@ -8,7 +8,7 @@ using MobilePoll.Persistence;
 
 namespace MobilePoll.Infrastructure.Bus
 {
-    [DebuggerNonUserCode, DebuggerStepThrough]
+    //[DebuggerNonUserCode, DebuggerStepThrough]
     internal class InMemoryBus : ILocalBus
     {
         private static readonly ILog Logger = LogFactory.BuildLogger(typeof(InMemoryBus));
