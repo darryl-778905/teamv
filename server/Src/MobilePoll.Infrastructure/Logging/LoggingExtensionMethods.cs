@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace MobilePoll.Infrastructure.Logging
 {
-    internal static class LoggingExtensionMethods
+    public static class LoggingExtensionMethods
     {
         private const string MessageFormat = "{0:yyyy/MM/dd HH:mm:ss.ff} - {1} - {2}";
 

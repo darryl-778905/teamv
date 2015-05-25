@@ -1,7 +1,5 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using MobilePoll.Environment;
-using MobilePoll.Infrastructure.Ioc;
 using MobilePoll.Infrastructure.Serialization;
 using MobilePoll.Serialization;
 using Shouldly;
@@ -17,15 +15,10 @@ namespace MobilePoll.Infrastructure.Tests
     [TestClass]
     public class SerializerTests
     {
-        static SerializerTests()
-        {
-            Configuration.Initialize(new AutofacAdapter());
-        }
-
         [TestMethod]
         public void Serializer_can_serialize_to_and_deserialize_from_a_string()
         {
-            ISerializer serializer = Configuration.RootContainer.GetInstance<ISerializer>();
+            ISerializer serializer = new JsonObjectSerializer();
 
             Dto dto = new Dto
             {
@@ -43,7 +36,7 @@ namespace MobilePoll.Infrastructure.Tests
         [TestMethod]
         public void Serializer_can_serialize_to_and_deserialize_from_a_byte_array()
         {
-            ISerializer serializer = Configuration.RootContainer.GetInstance<ISerializer>();
+            ISerializer serializer = new JsonObjectSerializer();
 
             Dto dto = new Dto
             {
