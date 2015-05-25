@@ -8,14 +8,12 @@ using MobilePoll.Persistence;
 
 namespace MobilePoll.Infrastructure.Bus
 {
-    //[DebuggerNonUserCode, DebuggerStepThrough]
+    [DebuggerNonUserCode, DebuggerStepThrough]
     internal class InMemoryBus : ILocalBus
     {
         private static readonly ILog Logger = LogFactory.BuildLogger(typeof(InMemoryBus));
         private readonly IServiceContainer serviceContainer;
         private readonly IMessageDispatcher dispatcher;
-
-        public IUnitOfWork UnitOfWork { get; set; }
 
         public InMemoryBus(IServiceContainer serviceContainer, IMessageDispatcher dispatcher)
         {
@@ -26,29 +24,28 @@ namespace MobilePoll.Infrastructure.Bus
         public void Execute(ICommand command)
         {
             Logger.Info("Executing command: {0}", command.ToString());
-
-            try
+            
+            using (var lifetimeScope = serviceContainer.BeginLifetimeScope())
             {
-                using (var lifetimeScope = serviceContainer.BeginLifetimeScope())
+                var unitOfWork = lifetimeScope.GetInstance<IUnitOfWork>();
+
+                try
                 {
                     ServiceLocator.Current.SetCurrentLifetimeScope(lifetimeScope);
-
                     dispatcher.DispatchToHandlers(command, serviceContainer);
-
-                    if(UnitOfWork != null)
-                        UnitOfWork.Commit();
+                    unitOfWork.Commit();
                 }
-            }
-            catch (Exception ex)
-            {
-                if (UnitOfWork != null)
-                    UnitOfWork.Rollback();
-                
-                Logger.Error(ex.GetFullExceptionMessage());
-            }
-            finally
-            {
-                ServiceLocator.Current.SetCurrentLifetimeScope(new DisposedProvider());
+                catch (Exception ex)
+                {
+                    if (unitOfWork != null)
+                        unitOfWork.Rollback();
+
+                    Logger.Error(ex.GetFullExceptionMessage());
+                }
+                finally
+                {
+                    ServiceLocator.Current.SetCurrentLifetimeScope(new DisposedProvider());
+                }
             }
         }
 

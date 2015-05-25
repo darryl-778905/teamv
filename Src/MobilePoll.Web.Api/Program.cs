@@ -11,7 +11,6 @@ namespace MobilePoll.Web.Api
 
         static void Main(string[] args)
         {
-
             Console.WriteLine("Configuring OWIN Self Host to run on {0}", BaseAddress);
             Console.WriteLine("Starting OWIN Server...");
 

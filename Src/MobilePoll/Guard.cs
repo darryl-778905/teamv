@@ -8,7 +8,7 @@ namespace MobilePoll
     /// <summary>
     /// A static class which simplifies the basic checking of parameters.
     /// </summary>
-    [DebuggerStepThrough]
+    //[DebuggerStepThrough]
     public static class Guard
     {
         /// <summary>

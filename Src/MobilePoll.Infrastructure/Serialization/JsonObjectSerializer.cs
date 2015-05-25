@@ -9,7 +9,7 @@ using Newtonsoft.Json.Converters;
 
 namespace MobilePoll.Infrastructure.Serialization
 {
-    [DebuggerNonUserCode, DebuggerStepThrough]
+    //[DebuggerNonUserCode, DebuggerStepThrough]
     internal class JsonObjectSerializer : ISerializer
     {
         static readonly JsonSerializerSettings SerializerSettings = new JsonSerializerSettings
