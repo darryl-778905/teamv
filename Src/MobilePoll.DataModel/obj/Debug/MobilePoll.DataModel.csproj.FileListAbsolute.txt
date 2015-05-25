@@ -1,0 +1,9 @@
+C:\Dev\WITS\teamv\Src\MobilePoll\MobilePoll.DataModel\bin\Debug\MobilePoll.DataModel.dll
+C:\Dev\WITS\teamv\Src\MobilePoll\MobilePoll.DataModel\bin\Debug\MobilePoll.DataModel.pdb
+C:\Dev\WITS\teamv\Src\MobilePoll\MobilePoll.DataModel\obj\Debug\MobilePoll.DataModel.dll
+C:\Dev\WITS\teamv\Src\MobilePoll\MobilePoll.DataModel\obj\Debug\MobilePoll.DataModel.pdb
+C:\Dev\WITS\teamv\Src\MobilePoll.DataModel\bin\Debug\MobilePoll.DataModel.dll
+C:\Dev\WITS\teamv\Src\MobilePoll.DataModel\bin\Debug\MobilePoll.DataModel.pdb
+C:\Dev\WITS\teamv\Src\MobilePoll.DataModel\obj\Debug\MobilePoll.DataModel.dll
+C:\Dev\WITS\teamv\Src\MobilePoll.DataModel\obj\Debug\MobilePoll.DataModel.pdb
+C:\Dev\WITS\teamv\Src\MobilePoll.DataModel\obj\Debug\MobilePoll.DataModel.csprojResolveAssemblyReference.cache
