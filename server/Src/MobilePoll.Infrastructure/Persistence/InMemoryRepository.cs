@@ -11,7 +11,7 @@ using MobilePoll.Persistence;
 namespace MobilePoll.Infrastructure.Persistence
 {
     [DebuggerNonUserCode, DebuggerStepThrough]
-    internal class InMemoryRepository<TEntity> : IRepository<TEntity> where TEntity : class
+    public class InMemoryRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         private readonly InMemoryDataStore dataStore;
         private readonly PropertyInfo identityPropertyInfo;
