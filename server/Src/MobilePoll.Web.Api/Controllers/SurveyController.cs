@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using MobilePoll.DataModel;
+using MobilePoll.MessageContracts;
 using MobilePoll.Persistence;
 
 namespace MobilePoll.Web.Api.Controllers

@@ -39,6 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InvalidSurveyQuestionTypeException.cs" />
+    <Compile Include="Parsers\MultipleOptionQuestionParser.cs" />
+    <Compile Include="Projections\PercentageOfPeopleWhoLikeToastPerYearProjection.cs" />
+    <Compile Include="Projections\PercentageOfPeopleWhoLikeToastProjection.cs" />
     <Compile Include="ParserPipeline.cs" />
     <Compile Include="Parsers\FreeformQuestionParser.cs" />
     <Compile Include="Parsers\QuestionParser.cs" />
@@ -49,6 +53,10 @@
     <ProjectReference Include="..\MobilePoll.DataModel\MobilePoll.DataModel.csproj">
       <Project>{628462c6-a436-4603-b75e-06c1da54459d}</Project>
       <Name>MobilePoll.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MobilePoll.Infrastructure\MobilePoll.Infrastructure.csproj">
+      <Project>{833908F6-6ED4-430D-9336-6053B061294B}</Project>
+      <Name>MobilePoll.Infrastructure</Name>
     </ProjectReference>
     <ProjectReference Include="..\MobilePoll.MessageContracts\MobilePoll.MessageContracts.csproj">
       <Project>{6DBA6566-8E28-41A2-A201-EDA984108CF3}</Project>

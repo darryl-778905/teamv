@@ -12,7 +12,7 @@ namespace MobilePoll.Infrastructure.Persistence
     {
         private static readonly JsonObjectSerializer Serializer;
         public static byte[] CommittedData;
-        private InMemoryDataStore workingSet;
+        public static InMemoryDataStore WorkingSet;
 
         static InMemoryUnitOfWork()
         {
@@ -22,24 +22,24 @@ namespace MobilePoll.Infrastructure.Persistence
 
         public InMemoryUnitOfWork()
         {
-            workingSet = new InMemoryDataStore();
+            WorkingSet = new InMemoryDataStore();
             Commit();
         }
 
         public void Commit()
         {
             //if we were working with a database, this is where the transaction would be created and all changes persisted.
-            CommittedData = Serializer.ToByteArray(workingSet);
+            CommittedData = Serializer.ToByteArray(WorkingSet);
         }
 
         public void Rollback()
         {
-            workingSet = Serializer.FromByteArray<InMemoryDataStore>(CommittedData);
+            WorkingSet = Serializer.FromByteArray<InMemoryDataStore>(CommittedData);
         }
 
         public IRepository<TEntity> GetRepository<TEntity>() where TEntity : class
         {
-            return new InMemoryRepository<TEntity>(workingSet);
+            return new InMemoryRepository<TEntity>(WorkingSet);
         }
     }
 }

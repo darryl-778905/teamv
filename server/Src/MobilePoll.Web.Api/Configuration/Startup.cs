@@ -5,6 +5,7 @@ using MobilePoll.Infrastructure.Logging;
 using MobilePoll.Infrastructure.Wireup;
 using MobilePoll.Ioc;
 using MobilePoll.Logging;
+using MobilePoll.MessageContracts;
 using MobilePoll.Persistence;
 using MobilePoll.Web.Api.Filters;
 using Newtonsoft.Json;
@@ -61,7 +62,7 @@ namespace MobilePoll.Web.Api.Configuration
         {
             var autofacAdapter = new WebApiAutofacAdapter();
             autofacAdapter.RegisterConfigurationModule(DefaultConfiguration);  //this is where we will change our environment configuration settings.
-            MobilePoll.Environment.Configuration.Initialize(autofacAdapter);
+            Environment.Configuration.Initialize(autofacAdapter);
             config.DependencyResolver = autofacAdapter.GetApiDependencyResolver();
         }
 

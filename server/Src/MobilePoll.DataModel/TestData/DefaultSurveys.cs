@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using MobilePoll.MessageContracts;
 
 namespace MobilePoll.DataModel.TestData
 {

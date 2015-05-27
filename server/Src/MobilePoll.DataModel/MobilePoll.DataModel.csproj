@@ -40,13 +40,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Polster.cs" />
-    <Compile Include="Survey.cs" />
+    <Compile Include="Reports\PercentageOfPeopleWhoLikeToast.cs" />
+    <Compile Include="Reports\PercentageOfPeopleWhoLikeToastPerYear.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SurveyQuestion.cs" />
     <Compile Include="TestData\DefaultSurveys.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MobilePoll.MessageContracts\MobilePoll.MessageContracts.csproj">
+      <Project>{6DBA6566-8E28-41A2-A201-EDA984108CF3}</Project>
+      <Name>MobilePoll.MessageContracts</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

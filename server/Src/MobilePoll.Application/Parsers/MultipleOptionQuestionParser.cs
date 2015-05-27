@@ -1,33 +1,29 @@
-using System.Linq;
-using MobilePoll.DataModel;
 using MobilePoll.MessageContracts;
 using MobilePoll.MessageContracts.Events;
 
 namespace MobilePoll.Application.Parsers
 {
-    public class FreeformQuestionParser : QuestionParser
+    public class MultipleOptionQuestionParser : QuestionParser
     {
         protected override string Type
         {
-            get { return "Freeform"; }
+            get { return "MultiOption"; }
         }
 
         protected override bool IsMulipleOptionQuestion
         {
-            get { return false; }
+            get { return true; }
         }
 
         protected override void ExtractData(int surveyId, string surveyName, SurveyQuestion question)
         {
-            string answer = question.Answers.First();
-
-            var answerReceived = new FreeformAnswerReceived
+            var answerReceived = new MultipleOptionAnswerReceived
             {
                 SurveyId = surveyId,
                 SurveyName = surveyName,
                 Question = question.Question,
                 QuestionId = question.Id,
-                Result = answer,
+                Result = question.Answers,
             };
 
             Bus.Raise(answerReceived);
