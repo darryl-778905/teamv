@@ -21,12 +21,9 @@ namespace MobilePoll.Infrastructure.Persistence
         {
             Serializer = new JsonObjectSerializer();
             CommittedData = Serializer.ToByteArray(new InMemoryDataStore());
-        }
-
-        public InMemoryUnitOfWork()
-        {
             WorkingSet = new InMemoryDataStore();
-            Commit();
+
+            CommittedData = Serializer.ToByteArray(WorkingSet);
         }
 
         public void Commit()
