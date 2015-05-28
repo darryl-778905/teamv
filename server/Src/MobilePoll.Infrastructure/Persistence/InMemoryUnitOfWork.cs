@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using MobilePoll.Infrastructure.Serialization;
+using MobilePoll.Logging;
 using MobilePoll.Persistence;
 
 namespace MobilePoll.Infrastructure.Persistence
@@ -10,6 +11,8 @@ namespace MobilePoll.Infrastructure.Persistence
     [DebuggerNonUserCode, DebuggerStepThrough]
     public class InMemoryUnitOfWork : IUnitOfWork, IRepositoryFactory
     {
+        private static readonly ILog Logger = LogFactory.BuildLogger(typeof(InMemoryUnitOfWork));
+
         private static readonly JsonObjectSerializer Serializer;
         public static byte[] CommittedData;
         public static InMemoryDataStore WorkingSet;
@@ -28,12 +31,16 @@ namespace MobilePoll.Infrastructure.Persistence
 
         public void Commit()
         {
+            Logger.Debug("Committing unit-of-work");
+
             //if we were working with a database, this is where the transaction would be created and all changes persisted.
             CommittedData = Serializer.ToByteArray(WorkingSet);
         }
 
         public void Rollback()
         {
+            Logger.Debug("Rolling back unit-of-work");
+
             WorkingSet = Serializer.FromByteArray<InMemoryDataStore>(CommittedData);
         }
 

@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Microsoft.Practices.ServiceLocation;
 
 namespace MobilePoll.Infrastructure.Ioc
 {
+    [DebuggerNonUserCode, DebuggerStepThrough]
     public class DisposedProvider : ServiceLocatorImplBase
     {
         protected override object DoGetInstance(Type serviceType, string key)

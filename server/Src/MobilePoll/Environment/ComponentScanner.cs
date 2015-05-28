@@ -1,22 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using MobilePoll.Bus;
 using MobilePoll.Ioc;
+using MobilePoll.Logging;
 
 namespace MobilePoll.Environment
 {
+    [DebuggerNonUserCode, DebuggerStepThrough]
     internal static class ComponentScanner
     {
+        private static readonly ILog Logger = LogFactory.BuildLogger(typeof (ComponentScanner));
+
         public static void Scan(IContainerBuilder containerBuilder)
         {
             using (var scanner = new AssemblyScanner())
             {
-                ICollection<Type> commandHandlerTypes = GetHandlerTypes(scanner, typeof(IHandleCommand<>));
-                ICollection<Type> eventHandlerTypes = GetHandlerTypes(scanner, typeof(IHandleEvent<>));
+                ICollection<Type> handlerTypes = GetHandlerTypes(scanner, typeof(IHandleCommand<>))
+                    .Union(GetHandlerTypes(scanner, typeof(IHandleEvent<>)))
+                    .Distinct(new TypeEqualityComparer()).ToArray();
 
-                RegisterTypes(containerBuilder, commandHandlerTypes, DependencyLifecycle.InstancePerUnitOfWork);
-                RegisterTypes(containerBuilder, eventHandlerTypes, DependencyLifecycle.InstancePerUnitOfWork);
+                RegisterTypes(containerBuilder, handlerTypes, DependencyLifecycle.InstancePerUnitOfWork);
             }
         }
 
@@ -34,6 +39,7 @@ namespace MobilePoll.Environment
         {
             foreach (var type in types)
             {
+                Logger.Debug("Registering message handler class {0}", type.Name);
                 containerBuilder.RegisterType(type, dependencyLifecycle);
             }
         }        

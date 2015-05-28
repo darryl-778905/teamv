@@ -39,7 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\Class1.cs" />
+    <Compile Include="Commands\RegisterNewSurvey.cs" />
+    <Compile Include="Commands\SavePollResult.cs" />
     <Compile Include="Events\FreeformAnswerReceived.cs" />
     <Compile Include="ISurveyAnswerEvent.cs" />
     <Compile Include="Events\MultipleOptionAnswerReceived.cs" />

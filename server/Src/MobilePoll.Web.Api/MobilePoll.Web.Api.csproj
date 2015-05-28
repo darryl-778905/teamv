@@ -90,14 +90,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\PollResultController.cs" />
     <Compile Include="Controllers\PollsterController.cs" />
     <Compile Include="Controllers\SurveyController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Filters\LoggingFilterAttribute.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Configuration\Startup.cs" />
-    <Compile Include="Configuration\WebApiAutofacAdapter.cs" />
+    <Compile Include="Wireup\Startup.cs" />
+    <Compile Include="Wireup\WebApiAutofacAdapter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

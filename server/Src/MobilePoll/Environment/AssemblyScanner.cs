@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -7,6 +8,7 @@ using MobilePoll.Logging;
 
 namespace MobilePoll.Environment
 {
+    [DebuggerNonUserCode, DebuggerStepThrough]
     internal class AssemblyScanner : IDisposable, IEqualityComparer<Type>
     {        
         private static readonly List<Func<string, bool>> ExclusionRules = new List<Func<string, bool>>();
@@ -29,6 +31,8 @@ namespace MobilePoll.Environment
         {
             ExclusionRules.AddRange(new Func<string, bool>[]
             {
+                s => s.StartsWith("Topshelf.", StringComparison.CurrentCultureIgnoreCase),
+                s => s.StartsWith("mscorlib.", StringComparison.CurrentCultureIgnoreCase),
                 s => s.StartsWith("Microsoft.", StringComparison.CurrentCultureIgnoreCase),
                 s => s.StartsWith("ServiceStack.", StringComparison.CurrentCultureIgnoreCase),
                 s => s.StartsWith("ServiceStack.", StringComparison.CurrentCultureIgnoreCase),

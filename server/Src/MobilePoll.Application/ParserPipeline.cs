@@ -2,14 +2,13 @@ using System;
 using System.Collections.Generic;
 using MobilePoll.Application.Parsers;
 using MobilePoll.Bus;
-using MobilePoll.DataModel;
 using MobilePoll.MessageContracts;
 
 namespace MobilePoll.Application
 {
     public class ParserPipeline
     {
-        private readonly List<QuestionParser> pipeline = new List<QuestionParser>();
+        private static readonly List<QuestionParser> Pipeline = new List<QuestionParser>();
 
         public ILocalBus Bus { get; set; }
 
@@ -22,10 +21,9 @@ namespace MobilePoll.Application
             Bus = bus;
         }
         
-        public ParserPipeline AddParser(QuestionParser parser)
+        public static void AddParser(QuestionParser parser)
         {
-            pipeline.Add(parser);
-            return this;
+            Pipeline.Add(parser);
         }
 
         public void ParseSurvey(Survey survey)
@@ -38,7 +36,7 @@ namespace MobilePoll.Application
 
         private void ParseQuestion(int surveyId, string surveyName, SurveyQuestion surveyQuestion)
         {
-            foreach (var questionParser in pipeline)
+            foreach (var questionParser in Pipeline)
             {
                 questionParser.Bus = Bus;
 

@@ -16,13 +16,12 @@ namespace MobilePoll.Application.Tests
         [TestInitialize]
         public void Initialize()
         {
+            ParserPipeline.AddParser(new YesNoQuestionParser());
+            ParserPipeline.AddParser(new FreeformQuestionParser());
+            ParserPipeline.AddParser(new MultipleOptionQuestionParser());
+
             bus = new LocalBusStub();
             pipeline = new ParserPipeline(bus);
-
-            pipeline
-                .AddParser(new YesNoQuestionParser())
-                .AddParser(new FreeformQuestionParser())
-                .AddParser(new MultipleOptionQuestionParser());
         }
 
         [TestMethod]

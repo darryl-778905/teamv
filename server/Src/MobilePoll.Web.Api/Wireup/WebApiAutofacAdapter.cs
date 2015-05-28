@@ -3,7 +3,7 @@ using Autofac;
 using Autofac.Integration.WebApi;
 using MobilePoll.Infrastructure.Ioc;
 
-namespace MobilePoll.Web.Api.Configuration
+namespace MobilePoll.Web.Api.Wireup
 {
     public class WebApiAutofacAdapter : AutofacAdapter
     {

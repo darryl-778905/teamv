@@ -1,11 +1,11 @@
 ﻿using MobilePoll.Application;
 using MobilePoll.Application.Parsers;
+using MobilePoll.DataModel.TestData;
 using MobilePoll.Environment;
 using MobilePoll.Infrastructure.Ioc;
-using MobilePoll.Infrastructure.Persistence;
-using MobilePoll.Infrastructure.Serialization;
 using MobilePoll.Infrastructure.Wireup;
 using MobilePoll.Ioc;
+using MobilePoll.Logging;
 
 namespace MobilePoll.TestShell
 {
@@ -15,16 +15,13 @@ namespace MobilePoll.TestShell
         {
             Intialize();
             ParserPipeline pipeline = InitializePipeline();
-
-            pipeline.ParseSurvey(ToastSurvey.Survey());
-
-            var serializer = new JsonObjectSerializer();
-
-            string text = serializer.Serialize(InMemoryUnitOfWork.WorkingSet);
+            pipeline.ParseSurvey(TestPollResult.Result());
         }
 
         private static void Intialize()
         {
+            ConsoleWindowLogger.MinimumLogLevel = LogLevel.Debug;
+            LogFactory.BuildLogger = type => new ConsoleWindowLogger(type);
             IContainerBuilder containerBuilder = new AutofacAdapter();
             containerBuilder.RegisterConfigurationModule(new InMemoryConfiguration());
             Configuration.Initialize(containerBuilder);
@@ -33,13 +30,11 @@ namespace MobilePoll.TestShell
 
         public static ParserPipeline InitializePipeline()
         {
-            ParserPipeline pipeline = new ParserPipeline(Configuration.Bus);
-            
-            pipeline
-                .AddParser(new FreeformQuestionParser())
-                .AddParser(new YesNoQuestionParser());
+            ParserPipeline.AddParser(new FreeformQuestionParser());
+            ParserPipeline.AddParser(new YesNoQuestionParser());
+            ParserPipeline.AddParser(new MultipleOptionQuestionParser());
 
-            return pipeline;
+            return new ParserPipeline(Configuration.Bus);
         }
     }
 }

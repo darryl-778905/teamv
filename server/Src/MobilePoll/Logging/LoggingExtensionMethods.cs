@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Globalization;
 
-namespace MobilePoll.Infrastructure.Logging
+namespace MobilePoll.Logging
 {
+    [DebuggerNonUserCode, DebuggerStepThrough]
     public static class LoggingExtensionMethods
     {
         private const string MessageFormat = "{0:yyyy/MM/dd HH:mm:ss.ff} - {1} - {2}";

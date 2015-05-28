@@ -3,13 +3,13 @@ using MobilePoll.MessageContracts;
 
 namespace MobilePoll.DataModel.TestData
 {
-    public static class DefaultSurveys
+    public static class TestSurveys
     {
         private static readonly Survey[] Defaults;
 
         public static IEnumerable<Survey> Surveys { get { return Defaults; } }
 
-        static DefaultSurveys()
+        static TestSurveys()
         {
             Defaults = new[] { YesNoSurvey(), MultiOptionSurvey(), FreeformSurvey(), ToastSurvey() };
         }
@@ -22,7 +22,7 @@ namespace MobilePoll.DataModel.TestData
                 {
                     Id = 1,
                     Answers = new string[0],
-                    Limits = 0,
+                    Limits = 3,
                     Mandatory = true,
                     Options = new string[0],
                     Type = "YesNo",
@@ -94,11 +94,21 @@ namespace MobilePoll.DataModel.TestData
                 {
                     Id = 1,
                     Answers = new string[0],
-                    Limits = 0,
+                    Limits = 3,
                     Mandatory = true,
                     Options = new string[0],
                     Type = "YesNo",
                     Question = "Do you like toast?"
+                },                
+                new SurveyQuestion
+                {
+                    Id = 3,
+                    Answers = new string[0],
+                    Limits = 250,
+                    Mandatory = true,
+                    Options = new string[0],
+                    Type = "Freeform",
+                    Question = "What do you like to eat on toast and why?"
                 },
                 new SurveyQuestion
                 {
@@ -110,21 +120,11 @@ namespace MobilePoll.DataModel.TestData
                     Type = "MultiOption",
                     Question = "Which of these type of toast do you like?"
                 },
-                new SurveyQuestion
-                {
-                    Id = 3,
-                    Answers = new string[0],
-                    Limits = 250,
-                    Mandatory = true,
-                    Options = new string[0],
-                    Type = "Freeform",
-                    Question = "What do you like to eat on toast and why?"
-                },
             };
 
             return new Survey
             {
-                Name = "Toast Survey",
+                Name = "Toast Result",
                 Description = "Tell us about how you like your toast.",
                 Questions = questions
             };

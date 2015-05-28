@@ -39,6 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Handlers\RegisterNewSurveyHandler.cs" />
+    <Compile Include="Handlers\SavePollResultHandler.cs" />
     <Compile Include="InvalidSurveyQuestionTypeException.cs" />
     <Compile Include="Parsers\MultipleOptionQuestionParser.cs" />
     <Compile Include="Projections\PercentageOfPeopleWhoLikeToastPerYearProjection.cs" />
@@ -48,6 +50,7 @@
     <Compile Include="Parsers\QuestionParser.cs" />
     <Compile Include="Parsers\YesNoQuestionParser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wireup\ParserPipelineConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MobilePoll.DataModel\MobilePoll.DataModel.csproj">
