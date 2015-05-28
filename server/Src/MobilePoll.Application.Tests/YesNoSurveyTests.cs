@@ -18,43 +18,34 @@ namespace MobilePoll.Application.Tests
         public void Initialize()
         {
             bus = new LocalBusStub();
-            parser = new YesNoQuestionParser(bus);
+            parser = new YesNoQuestionParser();
+            parser.Bus = bus;
         }
 
         [TestMethod]
         public void Parser_must_be_able_to_identify_a_yesno_question()
         {
-            parser.Parse(TestQuestions.YesnoQuestion);
-        }
-
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
-        public void Parser_must_fail_if_not_yesno_question()
-        {
-            parser.Parse(TestQuestions.MultiOptionQuestion);
-        }
-
-        [TestMethod, ExpectedException(typeof(ArgumentException))]
-        public void Parser_must_fail_if_text_longer_than_limit()
-        {
-            parser.Parse(TestQuestions.FreeformLimitQuestion);
+            parser.Parse(1, "TestSurvey", TestQuestions.YesnoQuestion);
+            bus.EventTypeWasRaised<YesNoAnswerReceived>().ShouldBe(true);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Parser_must_fail_if_question_is_null()
         {
-            parser.Parse(null);
+            parser.Parse(1, "TestSurvey", null);
         }
 
         [TestMethod]
         public void Question_must_contain_answer_if_mandatory()
         {
-            parser.Parse(TestQuestions.YesnoQuestion);
+            parser.Parse(1, "TestSurvey", TestQuestions.YesnoQuestion);
+            bus.EventTypeWasRaised<YesNoAnswerReceived>().ShouldBe(true);
         }
 
         [TestMethod]
         public void Answer_event_is_raised()
         {
-            parser.Parse(TestQuestions.YesnoQuestion);
+            parser.Parse(1, "TestSurvey", TestQuestions.YesnoQuestion);
            
             bus.EventTypeWasRaised<YesNoAnswerReceived>().ShouldBe(true);
             var answer = bus.GetFirstEventOfType<YesNoAnswerReceived>();

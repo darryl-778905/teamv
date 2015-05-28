@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Diagnostics;
 using MobilePoll.Bus;
 using MobilePoll.Ioc;
+using MobilePoll.Logging;
 
 namespace MobilePoll.Environment
 {
+    //[DebuggerNonUserCode, DebuggerStepThrough]
     public static class Configuration
     {
+        private static readonly ILog Logger = LogFactory.BuildLogger(typeof(Configuration));
         private static readonly Dictionary<string, string> Settings = new Dictionary<string, string>();
 
         private static IServiceContainer container;
@@ -16,6 +20,8 @@ namespace MobilePoll.Environment
         {
             if (container != null)
                 return;
+            
+            Logger.Debug("Intializing environment...");
 
             ComponentScanner.Scan(containerBuilder);
 

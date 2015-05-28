@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using Microsoft.Owin.Hosting;
-using MobilePoll.Web.Api.Configuration;
+using MobilePoll.Web.Api.Wireup;
 
 namespace MobilePoll.Web.Api
 {
@@ -17,7 +17,17 @@ namespace MobilePoll.Web.Api
             // Start OWIN host 
             using (WebApp.Start<Startup>(url: BaseAddress))
             {
-                Console.WriteLine("\nServer Started. To test the connection go to {0}api/test", BaseAddress);
+                Console.WriteLine("\nServer Started. To test the connection go to {0}api/Test", BaseAddress);
+
+                Console.WriteLine("\nAvailable API Calls:");
+                Console.WriteLine("GET {0}api/PollResult", BaseAddress);
+                Console.WriteLine("GET {0}api/PollResult/{{id}}", BaseAddress);
+                Console.WriteLine("POST {0}api/PollResult", BaseAddress);
+                Console.WriteLine();
+                Console.WriteLine("GET {0}api/PollResult", BaseAddress);
+                Console.WriteLine("GET {0}api/PollResult/{{id}}", BaseAddress);
+                Console.WriteLine("POST {0}api/PollResult", BaseAddress);
+
                 Console.WriteLine("\nPress the X key to stop the server.");
 
                 do

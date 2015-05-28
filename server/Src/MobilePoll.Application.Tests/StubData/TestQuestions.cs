@@ -1,4 +1,5 @@
 ﻿using MobilePoll.DataModel;
+using MobilePoll.MessageContracts;
 
 namespace MobilePoll.Application.Tests.StubData
 {
@@ -38,13 +39,24 @@ namespace MobilePoll.Application.Tests.StubData
         };
 
 
-        public static readonly SurveyQuestion MultiOptionQuestion = new SurveyQuestion
+        public static readonly SurveyQuestion MultipleOptionQuestion = new SurveyQuestion
+        {
+            Id = 1,
+            Answers = new[] { "Red", "Green" },
+            Limits = 0,
+            Mandatory = true,
+            Options = new[] {"Red", "Green", "Blue", "Black"},
+            Type = "MultiOption",
+            Question = "Which of these colours do you like?"
+        };
+
+        public static readonly SurveyQuestion NoAnswerMultipleOptionQuestion = new SurveyQuestion
         {
             Id = 1,
             Answers = new string[0],
             Limits = 0,
             Mandatory = true,
-            Options = new[] {"Red", "Green", "Blue", "Black"},
+            Options = new[] { "Red", "Green", "Blue", "Black" },
             Type = "MultiOption",
             Question = "Which of these colours do you like?"
         };

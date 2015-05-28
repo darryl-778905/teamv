@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace MobilePoll.DataModel
+﻿namespace MobilePoll.MessageContracts
 {
     public class Survey
     {

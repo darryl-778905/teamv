@@ -2,21 +2,19 @@ using System;
 using System.Linq;
 using MobilePoll.Bus;
 using MobilePoll.DataModel;
+using MobilePoll.MessageContracts;
 
 namespace MobilePoll.Application.Parsers
 {
     public abstract class QuestionParser
     {
-        protected readonly ILocalBus Bus;
+        public ILocalBus Bus { get; set; }
+
         protected abstract string Type { get; }
-        protected abstract void ExtractData(SurveyQuestion question);
+        protected abstract bool IsMulipleOptionQuestion { get; }
+        protected abstract void ExtractData(int surveyId, string surveyName, SurveyQuestion question);
 
-        protected QuestionParser(ILocalBus bus)
-        {
-            this.Bus = bus;
-        }
-
-        public virtual bool Parse(SurveyQuestion question)
+        public virtual bool Parse(int surveyId, string surveyName, SurveyQuestion question)
         {
             Guard.ParameterNotNull(question, "question");
             
@@ -27,8 +25,12 @@ namespace MobilePoll.Application.Parsers
             
             if (QuestionContainsAnswers(question))
             {
-                Guard.ParameterCondition(question.Answers.First().Length <= question.Limits, "question.answers");
-                ExtractData(question);
+                if (!IsMulipleOptionQuestion)
+                {
+                    Guard.ParameterCondition(question.Answers.First().Length <= question.Limits, "question.answers");
+                }
+                ExtractData(surveyId, surveyName, question);
+                
             }
 
             return true;

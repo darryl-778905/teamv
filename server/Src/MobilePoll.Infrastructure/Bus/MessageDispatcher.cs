@@ -3,12 +3,15 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using Microsoft.Practices.ServiceLocation;
 using MobilePoll.Bus;
+using MobilePoll.Logging;
 
 namespace MobilePoll.Infrastructure.Bus
 {
-    //[DebuggerNonUserCode, DebuggerStepThrough]
+    [DebuggerNonUserCode, DebuggerStepThrough]
     internal class MessageDispatcher : IMessageDispatcher
     {
+        private static readonly ILog Logger = LogFactory.BuildLogger(typeof(MessageDispatcher));
+
         private static readonly Type CommandHandlerGenericType = typeof(IHandleCommand<>);
         private static readonly Type EventHandlerGenericType = typeof(IHandleEvent<>);
 
@@ -45,6 +48,9 @@ namespace MobilePoll.Infrastructure.Bus
         {
             Type commandHandlerType = CommandHandlerGenericType.MakeGenericType(messageType);
             object commandHandler = serviceLocator.GetInstance(commandHandlerType);
+
+            Logger.Debug("Dispatching command {0} to handler {1}", messageType.Name, commandHandler.GetType().Name);
+
             ((dynamic)commandHandler).Execute((dynamic)message);
         }
 
@@ -55,6 +61,8 @@ namespace MobilePoll.Infrastructure.Bus
 
             foreach (var eventHandler in eventHandlers)
             {
+                Logger.Debug("Dispatching event {0} to handler {1}", messageType.Name, eventHandler.GetType().Name);
+
                 ((dynamic)eventHandler).When((dynamic)message);
             }
         }

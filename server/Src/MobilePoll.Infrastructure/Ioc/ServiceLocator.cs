@@ -6,7 +6,7 @@ using Microsoft.Practices.ServiceLocation;
 
 namespace MobilePoll.Infrastructure.Ioc
 {
-    //[DebuggerNonUserCode, DebuggerStepThrough]
+    [DebuggerNonUserCode, DebuggerStepThrough]
     public class ServiceLocator : ServiceLocatorImplBase
     {
         private static readonly ThreadLocal<ServiceLocator> Instance = new ThreadLocal<ServiceLocator>();
