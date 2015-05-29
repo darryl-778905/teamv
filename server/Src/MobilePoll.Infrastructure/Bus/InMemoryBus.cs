@@ -23,6 +23,9 @@ namespace MobilePoll.Infrastructure.Bus
 
         public void Execute(ICommand command)
         {
+            if (ServiceLocator.Current.HasServiceProvider())
+                throw new InvalidOperationException("A command may not execute within the context of another command.");
+
             Logger.Debug("Executing command: {0}", command.ToString());
             
             using (var lifetimeScope = serviceContainer.BeginLifetimeScope())

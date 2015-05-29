@@ -23,6 +23,7 @@ namespace MobilePoll.Web.Api.Wireup
             ConfigureLogging(config);
             ConfigureJsonResponseFormat(config);
             ConfigureDefaultRoutes(config);
+            CorsConfig.Configure(appBuilder);
             IntializeIoc(config);
             IntializeDefaultData();
             appBuilder.UseWebApi(config);
