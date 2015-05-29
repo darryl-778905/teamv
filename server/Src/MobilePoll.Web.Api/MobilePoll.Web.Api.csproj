@@ -97,6 +97,7 @@
     <Compile Include="Filters\LoggingFilterAttribute.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Wireup\CorsConfig.cs" />
     <Compile Include="Wireup\Startup.cs" />
     <Compile Include="Wireup\WebApiAutofacAdapter.cs" />
   </ItemGroup>

@@ -8,7 +8,7 @@ using MobilePoll.Logging;
 
 namespace MobilePoll.Environment
 {
-    //[DebuggerNonUserCode, DebuggerStepThrough]
+    [DebuggerNonUserCode, DebuggerStepThrough]
     public static class Configuration
     {
         private static readonly ILog Logger = LogFactory.BuildLogger(typeof(Configuration));

@@ -12,18 +12,16 @@ namespace MobilePoll.Infrastructure.Persistence
     public class InMemoryUnitOfWork : IUnitOfWork, IRepositoryFactory
     {
         private static readonly ILog Logger = LogFactory.BuildLogger(typeof(InMemoryUnitOfWork));
-
         private static readonly JsonObjectSerializer Serializer;
-        public static byte[] CommittedData;
-        public static InMemoryDataStore WorkingSet;
+        
+        public static string CommittedData { get; private set; }
+        public static InMemoryDataStore WorkingSet { get; private set; }
 
         static InMemoryUnitOfWork()
         {
             Serializer = new JsonObjectSerializer();
-            CommittedData = Serializer.ToByteArray(new InMemoryDataStore());
             WorkingSet = new InMemoryDataStore();
-
-            CommittedData = Serializer.ToByteArray(WorkingSet);
+            CommittedData = Serializer.Serialize(WorkingSet);
         }
 
         public void Commit()
@@ -31,14 +29,14 @@ namespace MobilePoll.Infrastructure.Persistence
             Logger.Debug("Committing unit-of-work");
 
             //if we were working with a database, this is where the transaction would be created and all changes persisted.
-            CommittedData = Serializer.ToByteArray(WorkingSet);
+            CommittedData = Serializer.Serialize(WorkingSet);
         }
 
         public void Rollback()
         {
-            Logger.Debug("Rolling back unit-of-work");
+            Logger.Warn("Rolling back unit-of-work");
 
-            WorkingSet = Serializer.FromByteArray<InMemoryDataStore>(CommittedData);
+            WorkingSet = Serializer.Deserialize<InMemoryDataStore>(CommittedData);
         }
 
         public IRepository<TEntity> GetRepository<TEntity>() where TEntity : class

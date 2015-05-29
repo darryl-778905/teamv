@@ -11,7 +11,7 @@ using MobilePoll.Persistence;
 
 namespace MobilePoll.Infrastructure.Persistence
 {
-    //[DebuggerNonUserCode, DebuggerStepThrough]
+    [DebuggerNonUserCode, DebuggerStepThrough]
     public class InMemoryRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
         private readonly ILog logger;

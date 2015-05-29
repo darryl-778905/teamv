@@ -10,7 +10,7 @@ namespace MobilePoll.Infrastructure.Wireup
         public void Configure(IContainerBuilder containerBuilder)
         {
             containerBuilder.RegisterType<JsonObjectSerializer>(DependencyLifecycle.SingleInstance);
-            containerBuilder.RegisterType<InMemoryUnitOfWork>(DependencyLifecycle.InstancePerUnitOfWork);
+            containerBuilder.RegisterType<InMemoryUnitOfWork>(DependencyLifecycle.SingleInstance);
             containerBuilder.RegisterType<MessageDispatcher>(DependencyLifecycle.SingleInstance);
             containerBuilder.RegisterType<InMemoryBus>(DependencyLifecycle.SingleInstance);
         }
