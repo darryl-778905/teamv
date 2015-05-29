@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using MobilePoll.Infrastructure.Serialization;
+using MobilePoll.Logging;
 using MobilePoll.Persistence;
 
 namespace MobilePoll.Infrastructure.Persistence
@@ -10,36 +11,39 @@ namespace MobilePoll.Infrastructure.Persistence
     [DebuggerNonUserCode, DebuggerStepThrough]
     public class InMemoryUnitOfWork : IUnitOfWork, IRepositoryFactory
     {
+        private static readonly ILog Logger = LogFactory.BuildLogger(typeof(InMemoryUnitOfWork));
+
         private static readonly JsonObjectSerializer Serializer;
         public static byte[] CommittedData;
-        private InMemoryDataStore workingSet;
+        public static InMemoryDataStore WorkingSet;
 
         static InMemoryUnitOfWork()
         {
             Serializer = new JsonObjectSerializer();
             CommittedData = Serializer.ToByteArray(new InMemoryDataStore());
-        }
+            WorkingSet = new InMemoryDataStore();
 
-        public InMemoryUnitOfWork()
-        {
-            workingSet = new InMemoryDataStore();
-            Commit();
+            CommittedData = Serializer.ToByteArray(WorkingSet);
         }
 
         public void Commit()
         {
+            Logger.Debug("Committing unit-of-work");
+
             //if we were working with a database, this is where the transaction would be created and all changes persisted.
-            CommittedData = Serializer.ToByteArray(workingSet);
+            CommittedData = Serializer.ToByteArray(WorkingSet);
         }
 
         public void Rollback()
         {
-            workingSet = Serializer.FromByteArray<InMemoryDataStore>(CommittedData);
+            Logger.Debug("Rolling back unit-of-work");
+
+            WorkingSet = Serializer.FromByteArray<InMemoryDataStore>(CommittedData);
         }
 
         public IRepository<TEntity> GetRepository<TEntity>() where TEntity : class
         {
-            return new InMemoryRepository<TEntity>(workingSet);
+            return new InMemoryRepository<TEntity>(WorkingSet);
         }
     }
 }

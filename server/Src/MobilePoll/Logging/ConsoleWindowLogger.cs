@@ -1,8 +1,7 @@
 using System;
 using System.Diagnostics;
-using MobilePoll.Logging;
 
-namespace MobilePoll.Infrastructure.Logging
+namespace MobilePoll.Logging
 {
     [DebuggerNonUserCode, DebuggerStepThrough]
     public class ConsoleWindowLogger : ILog

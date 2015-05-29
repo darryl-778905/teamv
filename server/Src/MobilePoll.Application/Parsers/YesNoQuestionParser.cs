@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
-using MobilePoll.Bus;
 using MobilePoll.DataModel;
+using MobilePoll.MessageContracts;
 using MobilePoll.MessageContracts.Events;
 
 namespace MobilePoll.Application.Parsers
@@ -13,27 +13,26 @@ namespace MobilePoll.Application.Parsers
             get { return "YesNo"; }
         }
 
-        public YesNoQuestionParser(ILocalBus bus)
-            : base(bus)
+        protected override bool IsMulipleOptionQuestion
         {
+            get { return false; }
         }
 
-        protected override void ExtractData(SurveyQuestion question)
+        protected override void ExtractData(int surveyId, string surveyName, SurveyQuestion question)
         {
-            if (QuestionContainsAnswers(question))
+            string answer = question.Answers.First();
+            bool result = answer.Equals("yes", StringComparison.InvariantCultureIgnoreCase);
+
+            YesNoAnswerReceived answerReceived = new YesNoAnswerReceived
             {
-                string answer = question.Answers.First();
-                bool result = answer.Equals("yes", StringComparison.InvariantCultureIgnoreCase);
+                SurveyId = surveyId,
+                SurveyName = surveyName,
+                Question = question.Question,
+                QuestionId = question.Id,
+                Result = result
+            };
 
-                YesNoAnswerReceived answerReceived = new YesNoAnswerReceived
-                {
-                    Question = question.Question,
-                    QuestionId = question.Id,
-                    Result = result
-                };
-
-                Bus.Raise(answerReceived);
-            }
+            Bus.Raise(answerReceived);
         }
     }
 }

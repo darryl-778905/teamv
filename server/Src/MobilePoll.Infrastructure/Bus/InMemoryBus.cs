@@ -23,7 +23,7 @@ namespace MobilePoll.Infrastructure.Bus
 
         public void Execute(ICommand command)
         {
-            Logger.Info("Executing command: {0}", command.ToString());
+            Logger.Debug("Executing command: {0}", command.ToString());
             
             using (var lifetimeScope = serviceContainer.BeginLifetimeScope())
             {
@@ -54,7 +54,7 @@ namespace MobilePoll.Infrastructure.Bus
             if (!ServiceLocator.Current.HasServiceProvider())
                 throw new InvalidOperationException("A event may only be raised within the context of an executing command.");
 
-            Logger.Info("Raising : {0}", @event);
+            Logger.Debug("Raising : {0}", @event);
 
             dispatcher.DispatchToHandlers(@event, ServiceLocator.Current);
         }

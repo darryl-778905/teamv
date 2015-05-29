@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace MobilePoll.Logging
 {
+    [DebuggerNonUserCode, DebuggerStepThrough]
     public static class LogFactory
     {
         /// <summary>

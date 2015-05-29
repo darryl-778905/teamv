@@ -6,13 +6,16 @@ using System.Diagnostics;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
+using MobilePoll.Logging;
 using MobilePoll.Persistence;
 
 namespace MobilePoll.Infrastructure.Persistence
 {
-    [DebuggerNonUserCode, DebuggerStepThrough]
+    //[DebuggerNonUserCode, DebuggerStepThrough]
     public class InMemoryRepository<TEntity> : IRepository<TEntity> where TEntity : class
     {
+        private readonly ILog logger;
+
         private readonly InMemoryDataStore dataStore;
         private readonly PropertyInfo identityPropertyInfo;
 
@@ -22,6 +25,7 @@ namespace MobilePoll.Infrastructure.Persistence
 
         public InMemoryRepository(InMemoryDataStore dataStore)
         {
+            logger = LogFactory.BuildLogger(GetType());
             this.dataStore = dataStore;
             identityPropertyInfo = GetIdentityPropertyInformation();
         }
@@ -42,22 +46,43 @@ namespace MobilePoll.Infrastructure.Persistence
             }
         }
 
-        public TEntity Get(int id)
+        public TEntity Get(Guid id)
         {
+            logger.Debug("Fetcing a {0} entity with Id {1}", typeof(TEntity).Name, id);
+
             return dataStore
                 .AsQueryable<TEntity>()
                 .SingleOrDefault(WithMatchingId(id));
         }
 
-        private Func<TEntity, bool> WithMatchingId(object id)
+        public TEntity Get(int id)
+        {
+            logger.Debug("Fetcing a {0} entity with Id {1}", typeof(TEntity).Name, id);
+
+            return dataStore
+                .AsQueryable<TEntity>()
+                .SingleOrDefault(WithMatchingId(id));
+        }
+
+        private Func<TEntity, bool> WithMatchingId(dynamic id)
         {
             ParameterExpression parameter = Expression.Parameter(typeof(TEntity), "x");
             Expression property = Expression.Property(parameter, identityPropertyInfo.Name);
-            Expression target = Expression.Constant(id);
+            Expression target = GetConstantExpression(id);
             Expression equalsMethod = Expression.Equal(property, target);
             Func<TEntity, bool> predicate = Expression.Lambda<Func<TEntity, bool>>(equalsMethod, parameter).Compile();
 
             return predicate;
+        }
+
+        private static dynamic GetConstantExpression(Guid id)
+        {
+            return Expression.Constant(id);
+        }
+
+        private static dynamic GetConstantExpression(int id)
+        {
+            return Expression.Constant(id);
         }
 
         public IQueryable<TEntity> AsQueryable()
@@ -65,10 +90,12 @@ namespace MobilePoll.Infrastructure.Persistence
             return dataStore.AsQueryable<TEntity>();
         }
 
-        public void Add(TEntity item)
+        public TEntity Add(TEntity item)
         {
-            object entityId = identityPropertyInfo.GetValue(item);
+            logger.Debug("Adding a {0} entity", typeof(TEntity).Name);
 
+            object entityId = identityPropertyInfo.GetValue(item);            
+            
             if (entityId is Guid)
             {
                 identityPropertyInfo.SetValue(item, Guid.NewGuid());
@@ -78,11 +105,15 @@ namespace MobilePoll.Infrastructure.Persistence
                 identityPropertyInfo.SetValue(item, dataStore.GetNextId<TEntity>());
             }
 
-            dataStore.Add(item);
+            dataStore.Add(item);         
+
+            return item;
         }
 
         public void Remove(TEntity item)
         {
+            logger.Debug("Removing a {0} entity", typeof(TEntity).Name);
+
             dataStore.Remove(item);
         }
 

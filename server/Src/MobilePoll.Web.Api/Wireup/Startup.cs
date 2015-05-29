@@ -1,23 +1,19 @@
-﻿using System.Web.Http;
-using MobilePoll.DataModel;
+﻿using System;
+using System.Web.Http;
+using MobilePoll.Application.Wireup;
 using MobilePoll.DataModel.TestData;
-using MobilePoll.Infrastructure.Logging;
 using MobilePoll.Infrastructure.Wireup;
-using MobilePoll.Ioc;
 using MobilePoll.Logging;
-using MobilePoll.Persistence;
+using MobilePoll.MessageContracts.Commands;
 using MobilePoll.Web.Api.Filters;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;
 using Owin;
-using LogLevel = MobilePoll.Infrastructure.Logging.LogLevel;
 
-namespace MobilePoll.Web.Api.Configuration
+namespace MobilePoll.Web.Api.Wireup
 {
     public class Startup
     {
-        public static readonly IConfigurationModule DefaultConfiguration = new InMemoryConfiguration();
-
         // This code configures Web API. The Startup class is specified as a type
         // parameter in the WebApp.Start method.
         public void Configuration(IAppBuilder appBuilder)
@@ -28,13 +24,13 @@ namespace MobilePoll.Web.Api.Configuration
             ConfigureJsonResponseFormat(config);
             ConfigureDefaultRoutes(config);
             IntializeIoc(config);
-            IntializeDebugData();
+            IntializeDefaultData();
             appBuilder.UseWebApi(config);
         }
 
         private static void ConfigureLogging(HttpConfiguration config)
         {
-            ConsoleWindowLogger.MinimumLogLevel = LogLevel.Info;
+            ConsoleWindowLogger.MinimumLogLevel = LogLevel.Debug;
             LogFactory.BuildLogger = type => new ConsoleWindowLogger(type);
             config.Filters.Add(new LoggingFilterAttribute());
         }
@@ -60,27 +56,24 @@ namespace MobilePoll.Web.Api.Configuration
         private static void IntializeIoc(HttpConfiguration config)
         {
             var autofacAdapter = new WebApiAutofacAdapter();
-            autofacAdapter.RegisterConfigurationModule(DefaultConfiguration);  //this is where we will change our environment configuration settings.
-            MobilePoll.Environment.Configuration.Initialize(autofacAdapter);
+            autofacAdapter.RegisterConfigurationModule(new InMemoryConfiguration());  
+            autofacAdapter.RegisterConfigurationModule(new ParserPipelineConfiguration());
+
+            Environment.Configuration.Initialize(autofacAdapter);
             config.DependencyResolver = autofacAdapter.GetApiDependencyResolver();
         }
 
         /// <summary>
         /// Configure debug surveys, this will be removed once we can populate 
         /// </summary>
-        private void IntializeDebugData()
+        private void IntializeDefaultData()
         {
-            using (var lifetimeScope = Environment.Configuration.RootContainer.BeginLifetimeScope())
+            foreach (var defaultSurvey in TestSurveys.Surveys)
             {
-                IRepositoryFactory repositoryFactory = lifetimeScope.GetInstance<IRepositoryFactory>();
-                IRepository<Survey> surveys = repositoryFactory.GetRepository<Survey>();
-
-                foreach (var defaultSurvey in DefaultSurveys.Surveys)
-                {
-                    surveys.Add(defaultSurvey);
-                }
+                Environment.Configuration.Bus.Execute(new RegisterNewSurvey(defaultSurvey));
             }
-        }
 
+            Environment.Configuration.Bus.Execute(new SavePollResult(Guid.NewGuid(), TestPollResult.Result()));
+        }
     }
 }

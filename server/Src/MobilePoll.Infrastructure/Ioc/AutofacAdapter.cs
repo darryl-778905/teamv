@@ -12,7 +12,7 @@ using MobilePoll.Logging;
 
 namespace MobilePoll.Infrastructure.Ioc
 {
-    //[DebuggerNonUserCode, DebuggerStepThrough]
+    [DebuggerNonUserCode, DebuggerStepThrough]
     public class AutofacAdapter : ServiceLocatorImplBase, IContainerBuilder, IServiceContainer
     {
         private static readonly ILog Logger = LogFactory.BuildLogger(typeof(AutofacAdapter));

@@ -62,8 +62,10 @@
     <Compile Include="Ioc\IConfigurationModule.cs" />
     <Compile Include="Ioc\IContainerBuilder.cs" />
     <Compile Include="Ioc\IServiceContainer.cs" />
+    <Compile Include="Logging\ConsoleWindowLogger.cs" />
     <Compile Include="Logging\ILog.cs" />
     <Compile Include="Logging\LogFactory.cs" />
+    <Compile Include="Logging\LoggingExtensionMethods.cs" />
     <Compile Include="Logging\LogLevel.cs" />
     <Compile Include="Persistence\IRepository.cs" />
     <Compile Include="Persistence\IRepositoryFactory.cs" />
