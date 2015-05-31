@@ -45,7 +45,7 @@ namespace MobilePoll.Application.Tests.StubData
             return new Survey
             {
                 Id = Guid.NewGuid(),
-                Name = "Toast Result",
+                Name = "Toast SelectedOptions",
                 Description = "Tell us about how you like your toast.",
                 Questions = questions
             };

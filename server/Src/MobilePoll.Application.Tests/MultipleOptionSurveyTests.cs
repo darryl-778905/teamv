@@ -56,8 +56,8 @@ namespace MobilePoll.Application.Tests
 
             bus.EventTypeWasRaised<MultipleOptionAnswerReceived>().ShouldBe(true);
             var answer = bus.GetFirstEventOfType<MultipleOptionAnswerReceived>();
-            answer.Result[0].ShouldBe("Red");
-            answer.Result[1].ShouldBe("Green");
+            answer.SelectedOptions[0].ShouldBe("Red");
+            answer.SelectedOptions[1].ShouldBe("Green");
         }
     }
 }

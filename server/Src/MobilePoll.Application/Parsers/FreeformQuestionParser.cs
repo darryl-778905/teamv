@@ -22,13 +22,13 @@ namespace MobilePoll.Application.Parsers
         {
             string answer = question.Answers.First();
 
-            var answerReceived = new FreeformAnswerReceived
+            var answerReceived = new FreeFormAnswerReceived
             {
                 SurveyId = surveyId,
                 SurveyName = surveyName,
                 Question = question.Question,
                 QuestionId = question.QuestionNumber,
-                Result = answer,
+                Answer = answer,
             };
 
             Bus.Raise(answerReceived);

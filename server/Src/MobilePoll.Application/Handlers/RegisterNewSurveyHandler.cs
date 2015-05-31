@@ -21,7 +21,7 @@ namespace MobilePoll.Application.Handlers
             var survey = surveys.FirstOrDefault(s => s.Name == e.Survey.Name);
 
             if(survey != null)
-                throw new InvalidOperationException("The survey has already been registered");
+                return;
 
             surveys.Add(e.Survey);
         }

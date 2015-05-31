@@ -6,13 +6,18 @@ namespace MobilePoll.Infrastructure.Persistence.Mongo
     public class MongoUnitOfWork : IUnitOfWork, IRepositoryFactory
     {
         private const string ConnectionString = "mongodb://localhost:27017";
+        public static bool DropDatabaseOnStartup = false;
+        private MongoServer server;
 
         static MongoUnitOfWork()
         {
-            MongoClient client = new MongoClient(ConnectionString);
-            MongoServer server = client.GetServer();
-            var mongoDatabase = server.GetDatabase("MobilePoll");
-            mongoDatabase.Drop();
+            if (DropDatabaseOnStartup)
+            {
+                MongoClient client = new MongoClient(ConnectionString);
+                MongoServer server = client.GetServer();
+                var mongoDatabase = server.GetDatabase("MobilePoll");
+                mongoDatabase.Drop();
+            }
         }
         
         private readonly MongoDatabase mongoDatabase;
@@ -20,18 +25,18 @@ namespace MobilePoll.Infrastructure.Persistence.Mongo
         public MongoUnitOfWork()
         {
             MongoClient client = new MongoClient(ConnectionString);
-            MongoServer server = client.GetServer();
+            server = client.GetServer();
             mongoDatabase = server.GetDatabase("MobilePoll");
         }
 
         public void Commit()
         {
-            //we are not yet working with Mongo transactions
+            server.Disconnect();
         }
 
         public void Rollback()
         {
-            //we are not yet working with Mongo transactions
+            server.Disconnect();
         }
 
         public IRepository<TEntity> GetRepository<TEntity>() where TEntity : class

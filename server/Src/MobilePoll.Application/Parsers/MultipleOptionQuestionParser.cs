@@ -24,7 +24,7 @@ namespace MobilePoll.Application.Parsers
                 SurveyName = surveyName,
                 Question = question.Question,
                 QuestionId = question.QuestionNumber,
-                Result = question.Answers,
+                SelectedOptions = question.Answers,
             };
 
             Bus.Raise(answerReceived);

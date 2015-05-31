@@ -92,6 +92,7 @@
   <ItemGroup>
     <Compile Include="Controllers\PollResultController.cs" />
     <Compile Include="Controllers\PollsterController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\SurveyController.cs" />
     <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Filters\LoggingFilterAttribute.cs" />

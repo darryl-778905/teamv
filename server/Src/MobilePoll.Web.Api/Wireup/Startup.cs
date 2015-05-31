@@ -79,12 +79,10 @@ namespace MobilePoll.Web.Api.Wireup
         /// </summary>
         private void IntializeDefaultData()
         {
-            foreach (var defaultSurvey in TestSurveys.Surveys)
+            foreach (var defaultSurvey in DefaultSurveys.Surveys)
             {
                 Environment.Configuration.Bus.Execute(new RegisterNewSurvey(defaultSurvey, Guid.NewGuid()));
             }
-
-            Environment.Configuration.Bus.Execute(new SavePollResult(Guid.NewGuid(), TestPollResult.Result()));
         }
     }
 }
