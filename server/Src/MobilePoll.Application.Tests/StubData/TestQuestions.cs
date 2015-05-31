@@ -7,7 +7,7 @@ namespace MobilePoll.Application.Tests.StubData
     {
         public static readonly SurveyQuestion FreeformQuestion = new SurveyQuestion
         {
-            Id = 1,
+            QuestionNumber = 1,
             Answers = new string[0],
             Limits = 250,
             Mandatory = false,
@@ -18,7 +18,7 @@ namespace MobilePoll.Application.Tests.StubData
 
         public static readonly SurveyQuestion MandatoryFreeformQuestion = new SurveyQuestion
         {
-            Id = 1,
+            QuestionNumber = 1,
             Answers = new[] { "Derrick" },
             Limits = 250,
             Mandatory = true,
@@ -29,7 +29,7 @@ namespace MobilePoll.Application.Tests.StubData
 
         public static readonly SurveyQuestion FreeformLimitQuestion = new SurveyQuestion
         {
-            Id = 1,
+            QuestionNumber = 1,
             Answers = new [] {"Derrick"},
             Limits = 1,
             Mandatory = true,
@@ -41,7 +41,7 @@ namespace MobilePoll.Application.Tests.StubData
 
         public static readonly SurveyQuestion MultipleOptionQuestion = new SurveyQuestion
         {
-            Id = 1,
+            QuestionNumber = 1,
             Answers = new[] { "Red", "Green" },
             Limits = 0,
             Mandatory = true,
@@ -52,7 +52,7 @@ namespace MobilePoll.Application.Tests.StubData
 
         public static readonly SurveyQuestion NoAnswerMultipleOptionQuestion = new SurveyQuestion
         {
-            Id = 1,
+            QuestionNumber = 1,
             Answers = new string[0],
             Limits = 0,
             Mandatory = true,
@@ -63,7 +63,7 @@ namespace MobilePoll.Application.Tests.StubData
 
         public static readonly SurveyQuestion YesnoQuestion = new SurveyQuestion
         {
-            Id = 1,
+            QuestionNumber = 1,
             Answers = new []{"Yes"},
             Limits = 3,
             Mandatory = true,

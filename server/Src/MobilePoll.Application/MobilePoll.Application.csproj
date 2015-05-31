@@ -43,8 +43,9 @@
     <Compile Include="Handlers\SavePollResultHandler.cs" />
     <Compile Include="InvalidSurveyQuestionTypeException.cs" />
     <Compile Include="Parsers\MultipleOptionQuestionParser.cs" />
-    <Compile Include="Projections\PercentageOfPeopleWhoLikeToastPerYearProjection.cs" />
-    <Compile Include="Projections\PercentageOfPeopleWhoLikeToastProjection.cs" />
+    <Compile Include="Projections\FreeFormReportProjection.cs" />
+    <Compile Include="Projections\MultipleOptionReportProjection.cs" />
+    <Compile Include="Projections\YesNoReportProjection.cs" />
     <Compile Include="ParserPipeline.cs" />
     <Compile Include="Parsers\FreeformQuestionParser.cs" />
     <Compile Include="Parsers\QuestionParser.cs" />

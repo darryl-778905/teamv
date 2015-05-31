@@ -1,6 +1,7 @@
 ﻿using System;
-using System.Net.Http;
 using Microsoft.Owin.Hosting;
+using MobilePoll.Infrastructure.Persistence.Mongo;
+using MobilePoll.Infrastructure.Wireup;
 using MobilePoll.Web.Api.Wireup;
 
 namespace MobilePoll.Web.Api
@@ -11,8 +12,13 @@ namespace MobilePoll.Web.Api
 
         static void Main(string[] args)
         {
+            MongoUnitOfWork.DropDatabaseOnStartup = false;
+            Startup.DefaultConfiguration = new MongoConfiguration();
+
             Console.WriteLine("Configuring OWIN Self Host to run on {0}", BaseAddress);
-            Console.WriteLine("Starting OWIN Server...");
+            Console.WriteLine("Starting OWIN Server with {0} configuration...", Startup.DefaultConfiguration.GetType().Name);
+
+            Console.WriteLine();
 
             // Start OWIN host 
             using (WebApp.Start<Startup>(url: BaseAddress))
@@ -27,6 +33,8 @@ namespace MobilePoll.Web.Api
                 Console.WriteLine("GET {0}api/PollResult", BaseAddress);
                 Console.WriteLine("GET {0}api/PollResult/{{id}}", BaseAddress);
                 Console.WriteLine("POST {0}api/PollResult", BaseAddress);
+                Console.WriteLine();
+                Console.WriteLine("GET {0}api/Report", BaseAddress);
 
                 Console.WriteLine("\nPress the X key to stop the server.");
 

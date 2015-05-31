@@ -3,7 +3,7 @@ using MobilePoll.Infrastructure.Serialization;
 using MobilePoll.Logging;
 using MobilePoll.Persistence;
 
-namespace MobilePoll.Infrastructure.Persistence
+namespace MobilePoll.Infrastructure.Persistence.InMemory
 {
     /// <summary>
     /// Normally a real unit of work would track changes to our persistence store and handle actual transactions. 
