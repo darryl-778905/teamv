@@ -1,4 +1,5 @@
-﻿using MobilePoll.Bus;
+﻿using System;
+using MobilePoll.Bus;
 
 namespace MobilePoll.MessageContracts.Commands
 {
@@ -6,9 +7,10 @@ namespace MobilePoll.MessageContracts.Commands
     {
         public Survey Survey { get; private set; }
 
-        public RegisterNewSurvey(Survey survey)
+        public RegisterNewSurvey(Survey survey, Guid id)
         {
             Survey = survey;
+            Survey.Id = id;
         }
     }
 }

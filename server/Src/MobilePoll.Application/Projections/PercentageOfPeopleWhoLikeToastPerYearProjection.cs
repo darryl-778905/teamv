@@ -28,8 +28,6 @@ namespace MobilePoll.Application.Projections
                 {
                     Year = DateTime.Today.Year
                 };
-
-                reports.Add(report);
             }
 
             report.Total++;
@@ -44,6 +42,16 @@ namespace MobilePoll.Application.Projections
             }
 
             report.PercentYes = report.Yes / (decimal)report.Total *100M;
+
+            if (report.Id == Guid.Empty)
+            {
+                report.Id = Guid.NewGuid();
+                reports.Add(report);
+            }
+            else
+            {
+                reports.Update(report);
+            }
         }
 
         public void When(FreeformAnswerReceived e)

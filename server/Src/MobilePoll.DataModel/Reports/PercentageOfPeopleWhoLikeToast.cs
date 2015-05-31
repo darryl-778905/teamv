@@ -8,7 +8,7 @@ namespace MobilePoll.DataModel.Reports
 {
     public class PercentageOfPeopleWhoLikeToast
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public int Yes { get; set; }
         public int No { get; set; }
         public int Total { get; set; }

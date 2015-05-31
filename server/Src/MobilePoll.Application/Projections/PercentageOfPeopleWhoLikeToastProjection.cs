@@ -20,13 +20,7 @@ namespace MobilePoll.Application.Projections
 
         public void When(YesNoAnswerReceived e)
         {
-            var report = reports.FirstOrDefault();
-
-            if (report == null)
-            {
-                report = new PercentageOfPeopleWhoLikeToast();
-                reports.Add(report);
-            }
+            var report = reports.FirstOrDefault() ?? new PercentageOfPeopleWhoLikeToast();
 
             report.Total++;
 
@@ -40,6 +34,17 @@ namespace MobilePoll.Application.Projections
             }
 
             report.PercentYes = report.Yes / (decimal)report.Total * 100M;
+
+
+            if (report.Id == Guid.Empty)
+            {
+                report.Id = Guid.NewGuid();
+                reports.Add(report);
+            }
+            else
+            {
+                reports.Update(report);
+            }
         }
 
         public void When(FreeformAnswerReceived e)

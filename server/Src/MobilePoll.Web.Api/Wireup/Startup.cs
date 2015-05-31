@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Web.Http;
+using System.Web.Http.Dependencies;
 using MobilePoll.Application.Wireup;
 using MobilePoll.DataModel.TestData;
 using MobilePoll.Infrastructure.Wireup;
+using MobilePoll.Ioc;
 using MobilePoll.Logging;
 using MobilePoll.MessageContracts.Commands;
 using MobilePoll.Web.Api.Filters;
@@ -14,6 +16,14 @@ namespace MobilePoll.Web.Api.Wireup
 {
     public class Startup
     {
+        private static IConfigurationModule defaultConfiguration = new InMemoryConfiguration();
+
+        public static IConfigurationModule DefaultConfiguration
+        {
+            get { return defaultConfiguration; }
+            set { defaultConfiguration = value; }
+        }
+
         // This code configures Web API. The Startup class is specified as a type
         // parameter in the WebApp.Start method.
         public void Configuration(IAppBuilder appBuilder)
@@ -57,7 +67,7 @@ namespace MobilePoll.Web.Api.Wireup
         private static void IntializeIoc(HttpConfiguration config)
         {
             var autofacAdapter = new WebApiAutofacAdapter();
-            autofacAdapter.RegisterConfigurationModule(new InMemoryConfiguration());  
+            autofacAdapter.RegisterConfigurationModule(defaultConfiguration);  
             autofacAdapter.RegisterConfigurationModule(new ParserPipelineConfiguration());
 
             Environment.Configuration.Initialize(autofacAdapter);
@@ -71,7 +81,7 @@ namespace MobilePoll.Web.Api.Wireup
         {
             foreach (var defaultSurvey in TestSurveys.Surveys)
             {
-                Environment.Configuration.Bus.Execute(new RegisterNewSurvey(defaultSurvey));
+                Environment.Configuration.Bus.Execute(new RegisterNewSurvey(defaultSurvey, Guid.NewGuid()));
             }
 
             Environment.Configuration.Bus.Execute(new SavePollResult(Guid.NewGuid(), TestPollResult.Result()));

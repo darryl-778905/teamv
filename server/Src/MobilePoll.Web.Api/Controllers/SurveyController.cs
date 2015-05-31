@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using MobilePoll.Bus;
@@ -23,18 +24,28 @@ namespace MobilePoll.Web.Api.Controllers
         public IEnumerable<Survey> Get()
         {
             return surveys.ToArray();
+        }
+
+        // GET api/values 
+        public Survey Get(Guid id)
+        {
+            return surveys.Get(id);
         } 
 
         // GET api/values/5 
-        public Survey Post(int id)
+        public Survey Post(Guid id)
         {
             return surveys.Get(id);
         }        
 
         // POST api/values 
-        public void Post([FromBody]Survey value) 
-        { 
-            bus.Execute(new RegisterNewSurvey(value));
+        public Guid Post([FromBody]Survey value)
+        {
+            Guid newid = Guid.NewGuid();
+
+            bus.Execute(new RegisterNewSurvey(value, newid));
+
+            return newid;
         } 
     }
 }

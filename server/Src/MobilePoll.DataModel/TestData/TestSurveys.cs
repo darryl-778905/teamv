@@ -20,7 +20,7 @@ namespace MobilePoll.DataModel.TestData
             {
                 new SurveyQuestion
                 {
-                    Id = 1,
+                    QuestionNumber = 1,
                     Answers = new string[0],
                     Limits = 3,
                     Mandatory = true,
@@ -44,7 +44,7 @@ namespace MobilePoll.DataModel.TestData
             {
                 new SurveyQuestion
                 {
-                    Id = 1,
+                    QuestionNumber = 1,
                     Answers = new string[0],
                     Limits = 0,
                     Mandatory = true,
@@ -68,7 +68,7 @@ namespace MobilePoll.DataModel.TestData
             {
                 new SurveyQuestion
                 {
-                    Id = 1,
+                    QuestionNumber = 1,
                     Answers = new string[0],
                     Limits = 250,
                     Mandatory = true,
@@ -92,7 +92,7 @@ namespace MobilePoll.DataModel.TestData
             {
                 new SurveyQuestion
                 {
-                    Id = 1,
+                    QuestionNumber = 1,
                     Answers = new string[0],
                     Limits = 3,
                     Mandatory = true,
@@ -102,7 +102,7 @@ namespace MobilePoll.DataModel.TestData
                 },                
                 new SurveyQuestion
                 {
-                    Id = 3,
+                    QuestionNumber = 3,
                     Answers = new string[0],
                     Limits = 250,
                     Mandatory = true,
@@ -112,7 +112,7 @@ namespace MobilePoll.DataModel.TestData
                 },
                 new SurveyQuestion
                 {
-                    Id = 2,
+                    QuestionNumber = 2,
                     Answers = new string[0],
                     Limits = 0,
                     Mandatory = true,

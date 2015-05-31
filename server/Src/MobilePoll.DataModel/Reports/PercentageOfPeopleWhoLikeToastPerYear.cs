@@ -1,8 +1,10 @@
-﻿namespace MobilePoll.DataModel.Reports
+﻿using System;
+
+namespace MobilePoll.DataModel.Reports
 {
     public class PercentageOfPeopleWhoLikeToastPerYear
     {
-        public int Id { get; set; }
+        public Guid Id { get; set; }
         public int Yes { get; set; }
         public int No { get; set; }
         public int Total { get; set; }
