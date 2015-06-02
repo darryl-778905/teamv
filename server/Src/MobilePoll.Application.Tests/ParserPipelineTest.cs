@@ -30,7 +30,6 @@ namespace MobilePoll.Application.Tests
             pipeline.ParseSurvey(TestSurvey.Survey());
             bus.RaisedEvents.Count.ShouldBe(3);
             var answer = bus.GetFirstEventOfType<YesNoAnswerReceived>();
-            answer.SurveyId.ShouldBe(TestSurvey.Survey().Id);
             answer.SurveyName.ShouldBe(TestSurvey.Survey().Name);
         }
     }

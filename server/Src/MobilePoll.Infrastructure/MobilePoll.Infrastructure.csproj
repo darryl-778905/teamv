@@ -38,6 +38,18 @@
     <Reference Include="Microsoft.Practices.ServiceLocation">
       <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
     </Reference>
+    <Reference Include="MongoDB.Bson">
+      <HintPath>..\packages\MongoDB.Bson.2.0.0\lib\net45\MongoDB.Bson.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver">
+      <HintPath>..\packages\MongoDB.Driver.2.0.0\lib\net45\MongoDB.Driver.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Core">
+      <HintPath>..\packages\MongoDB.Driver.Core.2.0.0\lib\net45\MongoDB.Driver.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="MongoDB.Driver.Legacy">
+      <HintPath>..\packages\mongocsharpdriver.2.0.0\lib\net45\MongoDB.Driver.Legacy.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -57,16 +69,19 @@
     <Compile Include="Bus\InvalidMessageTypeException.cs" />
     <Compile Include="Bus\MessageDispatcher.cs" />
     <Compile Include="Bus\InMemoryBus.cs" />
+    <Compile Include="Persistence\Mongo\MongoUnitOfWork.cs" />
+    <Compile Include="Persistence\Mongo\MongoRepository.cs" />
     <Compile Include="Wireup\InMemoryConfiguration.cs" />
     <Compile Include="Ioc\AutofacAdapter.cs" />
     <Compile Include="Ioc\ComponentRegistrationException.cs" />
     <Compile Include="Ioc\DisposedProvider.cs" />
     <Compile Include="Ioc\ServiceLocator.cs" />
-    <Compile Include="Persistence\InMemoryDataStore.cs" />
-    <Compile Include="Persistence\InMemoryRepository.cs" />
-    <Compile Include="Persistence\InMemoryUnitOfWork.cs" />
+    <Compile Include="Persistence\InMemory\InMemoryDataStore.cs" />
+    <Compile Include="Persistence\InMemory\InMemoryRepository.cs" />
+    <Compile Include="Persistence\InMemory\InMemoryUnitOfWork.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\JsonObjectSerializer.cs" />
+    <Compile Include="Wireup\MongoConfiguration.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -8,6 +8,7 @@ namespace MobilePoll.Persistence
         TEntity Get(Guid id);
         TEntity Get(int id);
         TEntity Add(TEntity newEntity);
+        TEntity Update(TEntity entity);
         void Remove(TEntity entity);
     }
 }

@@ -1,4 +1,5 @@
-﻿using MobilePoll.MessageContracts;
+﻿using System;
+using MobilePoll.MessageContracts;
 
 namespace MobilePoll.DataModel.TestData
 {
@@ -9,7 +10,7 @@ namespace MobilePoll.DataModel.TestData
             SurveyQuestion[] questions = {
                 new SurveyQuestion
                 {
-                    Id = 1,
+                    QuestionNumber = 1,
                     Answers = new [] {"Yes"},
                     Limits = 3,
                     Mandatory = true,
@@ -19,7 +20,7 @@ namespace MobilePoll.DataModel.TestData
                 },
                 new SurveyQuestion
                 {
-                    Id = 2,
+                    QuestionNumber = 2,
                     Answers = new [] {"Because it is awesome"},
                     Limits = 250,
                     Mandatory = true,
@@ -29,7 +30,7 @@ namespace MobilePoll.DataModel.TestData
                 },
                 new SurveyQuestion
                 {
-                    Id = 3,
+                    QuestionNumber = 3,
                     Answers = new[] {"Light", "Dark"},
                     Limits = 0,
                     Mandatory = true,
@@ -41,7 +42,8 @@ namespace MobilePoll.DataModel.TestData
 
             return new Survey
             {
-                Name = "Toast Result",
+                Id = Guid.NewGuid(),
+                Name = "Toast SelectedOptions",
                 Description = "Tell us about how you like your toast.",
                 Questions = questions
             };

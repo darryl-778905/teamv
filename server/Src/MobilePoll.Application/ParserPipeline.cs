@@ -34,7 +34,7 @@ namespace MobilePoll.Application
             }
         }
 
-        private void ParseQuestion(int surveyId, string surveyName, SurveyQuestion surveyQuestion)
+        private void ParseQuestion(Guid surveyId, string surveyName, SurveyQuestion surveyQuestion)
         {
             foreach (var questionParser in Pipeline)
             {

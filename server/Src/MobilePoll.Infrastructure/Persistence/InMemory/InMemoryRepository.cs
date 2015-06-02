@@ -9,7 +9,7 @@ using System.Reflection;
 using MobilePoll.Logging;
 using MobilePoll.Persistence;
 
-namespace MobilePoll.Infrastructure.Persistence
+namespace MobilePoll.Infrastructure.Persistence.InMemory
 {
     [DebuggerNonUserCode, DebuggerStepThrough]
     public class InMemoryRepository<TEntity> : IRepository<TEntity> where TEntity : class
@@ -98,7 +98,10 @@ namespace MobilePoll.Infrastructure.Persistence
             
             if (entityId is Guid)
             {
-                identityPropertyInfo.SetValue(item, Guid.NewGuid());
+                if (((Guid)entityId) == Guid.Empty)
+                {
+                    identityPropertyInfo.SetValue(item, Guid.NewGuid());
+                }
             }
             else
             {
@@ -108,6 +111,13 @@ namespace MobilePoll.Infrastructure.Persistence
             dataStore.Add(item);         
 
             return item;
+        }
+
+        public TEntity Update(TEntity entity)
+        {
+            // In memory does not do an update
+            return entity;
+
         }
 
         public void Remove(TEntity item)

@@ -12,9 +12,9 @@ namespace MobilePoll.Application.Parsers
 
         protected abstract string Type { get; }
         protected abstract bool IsMulipleOptionQuestion { get; }
-        protected abstract void ExtractData(int surveyId, string surveyName, SurveyQuestion question);
+        protected abstract void ExtractData(Guid surveyId, string surveyName, SurveyQuestion question);
 
-        public virtual bool Parse(int surveyId, string surveyName, SurveyQuestion question)
+        public virtual bool Parse(Guid surveyId, string surveyName, SurveyQuestion question)
         {
             Guard.ParameterNotNull(question, "question");
             

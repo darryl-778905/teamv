@@ -41,10 +41,11 @@
   <ItemGroup>
     <Compile Include="PollResult.cs" />
     <Compile Include="Polster.cs" />
-    <Compile Include="Reports\PercentageOfPeopleWhoLikeToast.cs" />
-    <Compile Include="Reports\PercentageOfPeopleWhoLikeToastPerYear.cs" />
+    <Compile Include="Reports\FreeFormReport.cs" />
+    <Compile Include="Reports\MultipleOptionReport.cs" />
+    <Compile Include="Reports\YesNoReport.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestData\TestSurveys.cs" />
+    <Compile Include="TestData\DefaultSurveys.cs" />
     <Compile Include="TestData\TestPollResult.cs" />
   </ItemGroup>
   <ItemGroup>

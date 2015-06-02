@@ -11,6 +11,7 @@ namespace MobilePoll.Application.Tests
     [TestClass]
     public class YesNoSurveyTests
     {
+        private static readonly Guid Id = Guid.NewGuid();
         private YesNoQuestionParser parser;
         private LocalBusStub bus;
 
@@ -25,27 +26,27 @@ namespace MobilePoll.Application.Tests
         [TestMethod]
         public void Parser_must_be_able_to_identify_a_yesno_question()
         {
-            parser.Parse(1, "TestSurvey", TestQuestions.YesnoQuestion);
+            parser.Parse(Id, "TestSurvey", TestQuestions.YesnoQuestion);
             bus.EventTypeWasRaised<YesNoAnswerReceived>().ShouldBe(true);
         }
 
         [TestMethod, ExpectedException(typeof(ArgumentNullException))]
         public void Parser_must_fail_if_question_is_null()
         {
-            parser.Parse(1, "TestSurvey", null);
+            parser.Parse(Id, "TestSurvey", null);
         }
 
         [TestMethod]
         public void Question_must_contain_answer_if_mandatory()
         {
-            parser.Parse(1, "TestSurvey", TestQuestions.YesnoQuestion);
+            parser.Parse(Id, "TestSurvey", TestQuestions.YesnoQuestion);
             bus.EventTypeWasRaised<YesNoAnswerReceived>().ShouldBe(true);
         }
 
         [TestMethod]
         public void Answer_event_is_raised()
         {
-            parser.Parse(1, "TestSurvey", TestQuestions.YesnoQuestion);
+            parser.Parse(Id, "TestSurvey", TestQuestions.YesnoQuestion);
            
             bus.EventTypeWasRaised<YesNoAnswerReceived>().ShouldBe(true);
             var answer = bus.GetFirstEventOfType<YesNoAnswerReceived>();

@@ -18,7 +18,7 @@ namespace MobilePoll.Application.Parsers
             get { return false; }
         }
 
-        protected override void ExtractData(int surveyId, string surveyName, SurveyQuestion question)
+        protected override void ExtractData(Guid surveyId, string surveyName, SurveyQuestion question)
         {
             string answer = question.Answers.First();
             bool result = answer.Equals("yes", StringComparison.InvariantCultureIgnoreCase);
@@ -28,7 +28,7 @@ namespace MobilePoll.Application.Parsers
                 SurveyId = surveyId,
                 SurveyName = surveyName,
                 Question = question.Question,
-                QuestionId = question.Id,
+                QuestionId = question.QuestionNumber,
                 Result = result
             };
 

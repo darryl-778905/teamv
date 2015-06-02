@@ -2,7 +2,7 @@
 {
     public class SurveyQuestion
     {
-        public int Id { get; set; }
+        public int QuestionNumber { get; set; }
         public string Question { get; set; }
         public string Type { get; set; }
         public bool Mandatory { get; set; }

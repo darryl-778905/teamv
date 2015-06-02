@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using MobilePoll.DataModel;
 using MobilePoll.MessageContracts;
@@ -17,17 +18,17 @@ namespace MobilePoll.Application.Parsers
             get { return false; }
         }
 
-        protected override void ExtractData(int surveyId, string surveyName, SurveyQuestion question)
+        protected override void ExtractData(Guid surveyId, string surveyName, SurveyQuestion question)
         {
             string answer = question.Answers.First();
 
-            var answerReceived = new FreeformAnswerReceived
+            var answerReceived = new FreeFormAnswerReceived
             {
                 SurveyId = surveyId,
                 SurveyName = surveyName,
                 Question = question.Question,
-                QuestionId = question.Id,
-                Result = answer,
+                QuestionId = question.QuestionNumber,
+                Answer = answer,
             };
 
             Bus.Raise(answerReceived);

@@ -2,10 +2,9 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.Serialization;
-using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace MobilePoll.Infrastructure.Persistence
+namespace MobilePoll.Infrastructure.Persistence.InMemory
 {
     [DataContract]
     [DebuggerNonUserCode, DebuggerStepThrough]
