@@ -2,11 +2,11 @@
 
 /**
  * @ngdoc function
- * @name angularTestApp.controller:MainCtrl
+ * @name TeamVSurveyClient.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the angularTestApp
+ * Controller of the TeamVSurveyClient
  */
-angular.module('angularTestApp')
+angular.module('TeamVSurveyClient')
   .controller('MainCtrl', function ($scope) {
   });

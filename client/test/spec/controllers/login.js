@@ -3,7 +3,7 @@
 describe('Controller: LoginCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('angularTestApp'));
+  beforeEach(module('TeamVSurveyClient'));
 
   var LoginCtrl,
     scope;

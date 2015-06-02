@@ -2,18 +2,18 @@
 
 /**
  * @ngdoc function
- * @name angularTestApp.controller:SurveyCtrl
+ * @name TeamVSurveyClient.controller:SurveyCtrl
  * @description
  * # SurveyCtrl
- * Controller of the angularTestApp
+ * Controller of the TeamVSurveyClient
  */
-angular.module('angularTestApp')
-  .controller('SurveysCtrl', ['$scope', '$location', 'SurveyList',
-    function ($scope, $location, SurveyList) {
+angular.module('TeamVSurveyClient')
+  .controller('SurveysCtrl', ['$scope', '$location', 'SurveySingleton',
+    function ($scope, $location, SurveySingleton) {
 			console.log('About to call getSurveys()');
 
       function getSurveys() {
-         SurveyList.list().then(function(data){
+        SurveySingleton.list().then(function(data){
            $scope.surveys = data.data;
            console.log(data);
          });
@@ -37,7 +37,6 @@ angular.module('angularTestApp')
 
         $location.path('/survey/' + survey.Id);
       };
-
 
 		}
 	]);

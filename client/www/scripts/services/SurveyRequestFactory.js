@@ -2,15 +2,15 @@
 
 /**
  * @ngdoc service
- * @name angularTestApp.SurveryFactory
+ * @name TeamVSurveyClient.SurveryFactory
  * @description
  * # SurveryFactory
- * Factory in the angularTestApp.
+ * Factory in the TeamVSurveyClient.
  */
-angular.module('angularTestApp')
+angular.module('TeamVSurveyClient')
     .factory('SurveyRequestFactory', ['$http', function($http) {
 
-    var urlBase = 'http://localhost:9000/api/Survey/';
+    var urlBase = 'http://192.168.0.1:9000/api/Survey/';
 
     var dataFactory = {};
 

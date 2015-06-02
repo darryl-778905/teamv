@@ -33,6 +33,7 @@ module.exports = function(config) {
       'www/bower_components/angular-route/angular-route.js',
       'www/bower_components/angular-sanitize/angular-sanitize.js',
       'www/bower_components/angular-touch/angular-touch.js',
+      'www/bower_components/ngStorage/src/angularLocalStorage.js',
       'www/bower_components/angular-mocks/angular-mocks.js',
       // endbower
       "app/scripts/**/*.js",

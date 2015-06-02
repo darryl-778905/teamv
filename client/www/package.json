@@ -1,0 +1,11 @@
+{
+  "main": "index.html",
+  "name": "TeamV",
+  "scripts": {
+    "start": "nw ."
+  },
+  "window": {
+    "toolbar": false,
+    "frame": false
+  }
+}

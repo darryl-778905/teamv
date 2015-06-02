@@ -3,7 +3,7 @@
 describe('Service: SurveryFactory', function () {
 
   // load the service's module
-  beforeEach(module('angularTestApp'));
+  beforeEach(module('TeamVSurveyClient'));
 
   // instantiate service
   var SurveryFactory;

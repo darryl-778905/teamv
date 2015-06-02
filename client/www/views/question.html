@@ -1,0 +1,19 @@
+<div class="jumbotron">
+
+  <div id="content">
+    <p>{{question.Question}}</p>
+
+    <div>
+
+      <button class="btn btn-success" ng-click="answer('YES');"><span class="glyphicon glyphicon-ok success"></span></button>
+      <button class="btn btn-danger" ng-click="answer('NO');"><span class="glyphicon glyphicon-remove danger"></span></button>
+
+    </div>
+  </div>
+</div>
+
+<div id="footer">
+  <span class="glyphicon glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+  {{index}} of {{count}}
+  <span class="glyphicon glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+</div>

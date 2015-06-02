@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name angularTestApp
+ * @name TeamVSurveyClient
  * @description
- * # angularTestApp
+ * # TeamVSurveyClient
  *
  * Main module of the application.
  */
 angular
-  .module('angularTestApp', [
+  .module('TeamVSurveyClient', [
     'ngAnimate',
     'ngAria',
     'ngCookies',
@@ -22,25 +22,40 @@ angular
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        templateUrl: 'views/main.html'
+        /*,
+         controller: 'MainCtrl'
+         */
       })
       .when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl'
       })
-    .when('/survey/:id', {
-        templateUrl: 'views/survey.html',
-        controller: 'SurveyCtrl'
-      })
-	  .when('/surveys', {
+      .when('/surveys', {
         templateUrl: 'views/surveys.html',
         controller: 'SurveysCtrl'
+      })
+      .when('/question/:survey_id&:question_id', {
+        templateUrl: 'views/question.html',
+        controller: 'QuestionCtrl'
+      })
+      .when('/survey/:survey_id', {
+        templateUrl: 'views/questionnaire.html',
+        controller: 'QuestionnaireCtrl'
+      })
+      .when('/complete/:survey_id', {
+        templateUrl: 'views/complete.html',
+        controller: 'CompleteCtrl'
       })
       .otherwise({
         redirectTo: '/'
       });
   })
-  .config(function($httpProvider){
+  .config(function ($httpProvider) {
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
   });
+/*
+  .config(function ($locationProvider) {
+    $locationProvider.html5Mode(true);
+  });
+*/
