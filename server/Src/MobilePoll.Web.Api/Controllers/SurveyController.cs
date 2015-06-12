@@ -32,12 +32,6 @@ namespace MobilePoll.Web.Api.Controllers
             return surveys.Get(id);
         } 
 
-        // GET api/values/5 
-        public Survey Post(Guid id)
-        {
-            return surveys.Get(id);
-        }        
-
         // POST api/values 
         public Guid Post([FromBody]Survey value)
         {

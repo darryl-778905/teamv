@@ -8,7 +8,7 @@ namespace MobilePoll.Web.Api
 {
     class Program
     {
-        const string BaseAddress = "http://localhost:9000/";
+        private static readonly string BaseAddress = String.Format("http://{0}:9000", System.Environment.MachineName);
 
         static void Main(string[] args)
         {
@@ -20,8 +20,14 @@ namespace MobilePoll.Web.Api
 
             Console.WriteLine();
 
+            StartOptions options = new StartOptions();
+            options.Urls.Add("http://localhost:9000");
+            options.Urls.Add("http://127.0.0.1:9000");
+            options.Urls.Add("http://192.168.0.3:9000");
+            options.Urls.Add(BaseAddress);
+
             // Start OWIN host 
-            using (WebApp.Start<Startup>(url: BaseAddress))
+            using (WebApp.Start<Startup>(options))
             {
                 Console.WriteLine("\nServer Started. To test the connection go to {0}api/Test", BaseAddress);
 
