@@ -15,7 +15,7 @@ namespace MobilePoll.Web.Api.Wireup
 {
     public class Startup
     {
-        private static IConfigurationModule defaultConfiguration = new InMemoryConfiguration();
+        private static IConfigurationModule defaultConfiguration = new InMemory();
 
         public static IConfigurationModule DefaultConfiguration
         {
@@ -32,7 +32,7 @@ namespace MobilePoll.Web.Api.Wireup
 
             if (configuartion.Equals("Mongo"))
             {
-                defaultConfiguration = new MongoConfiguration();
+                defaultConfiguration = new Mongo();
             }
         }
 
