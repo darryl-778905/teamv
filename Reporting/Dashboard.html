@@ -1,0 +1,90 @@
+<!doctype html>
+<html>
+	<head>		
+		<title>Mobile Poll - Reports</title>
+		<script src="Chart.js"></script>
+		<script src="jquery-2.1.4.js"></script>
+	</head>
+	<body>		
+		<button type="button" onclick="demographicsFunction()">Generate Reports - Demographics</button>	
+		<div style="width: 50%">
+			<canvas id="canvas1" height="200" width="200"></canvas>
+		</div>
+		<div style="width: 50%">
+			<canvas id="canvas2" height="200" width="300"></canvas>
+		</div>
+		<div style="width: 50%">
+			<canvas id="canvas3" height="200" width="300"></canvas>
+		</div>		
+		<div id="legendDiv"></div>
+		<script>
+			function demographicsFunction() {
+			//$.getJSON("http://localhost:9000/api/Report", function(data){
+			$.getJSON("http://msi:9000/api/Report", function(data){
+					var yesnoData = data.YesNoReport;
+					var multipleoptionData = data.MultipleOptionReport;
+					var freeformData = data.FreeFormReport;
+					
+					console.log(yesnoData);
+					console.log(multipleoptionData);
+					console.log(freeformData);
+					
+					var doughnutData = [
+						{
+							value: yesnoData[0].No,
+							color:"#F7464A",
+							highlight: "#FF5A5E",
+							label: "No"
+						},
+						{
+							value: yesnoData[0].Yes,
+							color: "#46BFBD",
+							highlight: "#5AD3D1",
+							label: "Yes"
+						}
+					];
+										
+					var barChartData2 = {
+						labels : ["White", "Indian"],
+						datasets : [
+							{
+								label: "Which ethnic group do you most identity with?",
+								fillColor : "rgba(220,220,220,0.5)",
+								strokeColor : "rgba(220,220,220,0.8)",
+								highlightFill: "rgba(220,220,220,0.75)",
+								highlightStroke: "rgba(220,220,220,1)",
+								data : [multipleoptionData[0].SelectedOptions[0].Value, multipleoptionData[0].SelectedOptions[1].Value],
+							}
+						]
+					}
+					
+					var barChartData3 = {
+						labels : ["Long waiting times", "Unprofessional staff", "Lack of signage"],
+						datasets : [
+							{
+								label: "Which of the following problems did you encounter?",
+								fillColor : "rgba(220,220,220,0.5)",
+								strokeColor : "rgba(220,220,220,0.8)",
+								highlightFill: "rgba(220,220,220,0.75)",
+								highlightStroke: "rgba(220,220,220,1)",
+								data : [multipleoptionData[6].SelectedOptions[0].Value, multipleoptionData[6].SelectedOptions[1].Value, multipleoptionData[6].SelectedOptions[2].Value],
+							}
+						]
+					}
+					
+					//var ctx1 = new Chart(document.getElementById("canvas1").getContext("2d")).Bar(barChartData1);
+					var ctx1 = new Chart(document.getElementById("canvas1").getContext("2d")).Doughnut(doughnutData);
+
+					var ctx2 = new Chart(document.getElementById("canvas2").getContext("2d")).Bar(barChartData2);
+					
+					var ctx3 = new Chart(document.getElementById("canvas3").getContext("2d")).Bar(barChartData3);
+					//var ctx1 = document.getElementById("canvas1").getContext("2d");
+						//window.myBar = new Chart(ctx1).Bar(barChartData1);
+					
+					//var ctx2 = document.getElementById("canvas2").getContext("2d");
+						//window.myBar = new Chart(ctx2).Bar(barChartData2);
+					});
+			}
+		</script>
+	</body>
+</html>
