@@ -17,8 +17,6 @@ angular.module('TeamVSurveyClient')
         if ($scope.index < $scope.questions.length) {
             $location.path('/question/' + $routeParams.survey_id + '&' + $scope.questions[$scope.index].QuestionNumber);
         } else {
-          console.log("SUBMITTING" + $routeParams.survey_id);
-          SurveySingleton.submit($routeParams.survey_id);
           $location.path('/complete/' + $routeParams.survey_id);
         }
       };
@@ -53,10 +51,23 @@ angular.module('TeamVSurveyClient')
 
       getSurvey();
 
+      $scope.selection = [];
+
+      $scope.toggleSelection = function(answer) {
+        var idx = $scope.selection.indexOf(answer);
+
+        if (idx > -1) {
+          $scope.selection.splice(idx , 1);
+        } else {
+          $scope.selection.push(answer);
+        }
+
+        console.log($scope.selection);
+      };
+
       $scope.checkboxStyles = ['default', 'primary', 'success', 'danger', 'warning', 'info'];
 
       $scope.yn = function(answer) {
-        //Update Answer
         console.log('Answer ' + $scope.index);
         console.log('YN Answer ' + answer);
 
@@ -66,23 +77,22 @@ angular.module('TeamVSurveyClient')
 
       };
 
-      $scope.mc = function(answers) {
+      $scope.mc = function() {
         console.log('Answer ' + $scope.index);
-        console.log('Freetext Answer ' + answers);
+        console.log('MC Answer ' + $scope.selection);
+
+        $scope.question.Answers = $scope.selection;
 
         forwardPage();
       }
 
-      $scope.freeText;
-
-      $scope.ft = function(){
-        //Update Answer
+      $scope.ft = function(answer){
         console.log('Answer ' + $scope.index);
-        console.log('Freetext Answer ' + $scope.freeText);
+        console.log('FT Answer ' + answer);
 
-        $scope.question.Answers = [$scope.freeText];
+        $scope.question.Answers = [answer];
 
-        //forwardPage();
+        forwardPage();
 
       };
 

@@ -32,6 +32,8 @@ angular.module('TeamVSurveyClient')
       getSurvey();
 
       $scope.okay = function () {
+        console.log("Attempting SUBMITTING" + $routeParams.survey_id);
+        SurveySingleton.submit($routeParams.survey_id);
         $location.path('/survey/' + $routeParams.survey_id);
       }
 
