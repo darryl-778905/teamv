@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "CreateSurvey";
+}
+
+<h2>CreateSurvey</h2>
+
+<form>
+    <h2>Questions</h2>
+    <div id='contactsList'>
+        <table class='contactsEditor'>
+            <tr>
+                <th></th>
+                <th>Question</th>
+                <th>Question Number</th>
+                <th>Type</th>
+                <th>Mandatory</th>
+                <th>Limits</th>
+                <th>Options</th>
+            </tr>
+            <tbody data-bind="foreach: questions">
+            <tr>
+                <td><div>
+    <a href='#' data-bind='click: $root.removeQuestion'>Delete</a>
+</div></td>
+                <td>
+                    <input data-bind='value: Question'/>
+                    
+                </td>
+                <td><input data-bind='value: QuestionNumber'/></td>
+                <td><input data-bind='value: Type' readonly="true"/></td>
+                <td><input data-bind='value: Mandatory'/></td>
+                <td><input data-bind='value: Limits'/></td>
+
+                <td data-bind="visible: Type == 'MultipleOption'">
+                    <table>
+                        <tbody data-bind="foreach: Options">
+                        <tr>
+                            <td><input data-bind='value: Option'/></td>
+                            <td><a href='#' data-bind='click: $root.removeOption'>Delete</a></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <a href='#' data-bind='click: $root.addOption'>Add option</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p>
+        <button data-bind="click: addYesNoQuestion">Add a YesNo Question</button>
+        <button data-bind="click: addFreeFormQuestion">Add a FreeForm Question</button>
+        <button data-bind="click: addMultiOptionQuestion">Add a Multi-Option Question</button>
+        <button data-bind="click: save, enable: questions().length > 0">Save to JSON</button>
+
+
+
+    </p>
+
+    <textarea data-bind='value: lastSavedJson' rows='20' cols='120'> </textarea>
+</form>
