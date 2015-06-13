@@ -39,7 +39,7 @@ namespace MobilePoll.Infrastructure.TestShell
         private static ILocalBus Intialize()
         {
             IContainerBuilder containerBuilder = new AutofacAdapter();
-            containerBuilder.RegisterConfigurationModule(new InMemoryConfiguration());
+            containerBuilder.RegisterConfigurationModule(new InMemory());
             Configuration.Initialize(containerBuilder);
             return Configuration.Bus;
         }

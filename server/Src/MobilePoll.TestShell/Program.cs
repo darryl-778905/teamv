@@ -23,7 +23,7 @@ namespace MobilePoll.TestShell
             ConsoleWindowLogger.MinimumLogLevel = LogLevel.Debug;
             LogFactory.BuildLogger = type => new ConsoleWindowLogger(type);
             IContainerBuilder containerBuilder = new AutofacAdapter();
-            containerBuilder.RegisterConfigurationModule(new InMemoryConfiguration());
+            containerBuilder.RegisterConfigurationModule(new InMemory());
             Configuration.Initialize(containerBuilder);
             ServiceLocator.Current.SetCurrentLifetimeScope(Configuration.RootContainer);
         }
