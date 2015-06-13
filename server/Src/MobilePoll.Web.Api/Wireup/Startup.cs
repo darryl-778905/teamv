@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web.Http;
-using System.Web.Http.Dependencies;
 using MobilePoll.Application.Wireup;
 using MobilePoll.DataModel.TestData;
 using MobilePoll.Infrastructure.Wireup;
@@ -24,12 +23,24 @@ namespace MobilePoll.Web.Api.Wireup
             set { defaultConfiguration = value; }
         }
 
+        static Startup()
+        {
+            var configuartion = Environment.Configuration.GetSetting("Configuration");
+
+            if (String.IsNullOrWhiteSpace(configuartion))
+                return; 
+
+            if (configuartion.Equals("Mongo"))
+            {
+                defaultConfiguration = new MongoConfiguration();
+            }
+        }
+
         // This code configures Web API. The Startup class is specified as a type
         // parameter in the WebApp.Start method.
         public void Configuration(IAppBuilder appBuilder)
         {
             HttpConfiguration config = new HttpConfiguration();
-
             ConfigureLogging(config);
             ConfigureJsonResponseFormat(config);
             ConfigureDefaultRoutes(config);
