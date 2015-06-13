@@ -33,8 +33,8 @@ angular.module('TeamVSurveyClient')
 
       $scope.start = function () {
         console.log($routeParams.survey_id);
-        console.log($scope.questionnaire.Questions[0].Id);
-        $location.path('/question/' + $routeParams.survey_id + '&' + $scope.questionnaire.Questions[0].Id);
+        console.log($scope.questionnaire.Questions[0].QuestionNumber);
+        $location.path('/question/' + $routeParams.survey_id + '&' + $scope.questionnaire.Questions[0].QuestionNumber);
       }
 
       $scope.cancel = function () {

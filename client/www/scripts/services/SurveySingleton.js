@@ -21,6 +21,18 @@ angular.module('TeamVSurveyClient').factory('SurveySingleton', ['$q', 'SurveyReq
 
   };
 
+  instance.submit = function (survey_id) {
+    console.log('SurveySingleton ' + survey_id);
+
+    angular.forEach(instance.data.data, function(dataItem) {
+      console.log('SurveySingleton [' + dataItem.Id + ']');
+      if (dataItem.Id == survey_id) {
+        console.log('SurveySingleton Found ' + survey_id);
+        SurveyRequestFactory.postPollResult(dataItem);
+      }
+    });
+  };
+
   //instance.updateSurveryAnswer = function (survery, answer) {
   //  console.log();
   //  var defer = $q.defer();

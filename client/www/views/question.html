@@ -1,19 +1,51 @@
 <div class="jumbotron">
 
   <div id="content">
-    <p>{{question.Question}}</p>
+      <p>{{question.Question}}</p>
 
-    <div>
+      <div ng-if="question.Type == 'YesNo'">
+        <form id="loginform" class="form-horizontal" role="form">
 
-      <button class="btn btn-success" ng-click="answer('YES');"><span class="glyphicon glyphicon-ok success"></span></button>
-      <button class="btn btn-danger" ng-click="answer('NO');"><span class="glyphicon glyphicon-remove danger"></span></button>
+          <button class="btn btn-success" type="submit" ng-click="yn('YES')"><span class="glyphicon glyphicon-ok success"></span>
+          </button>
+          <button class="btn btn-danger" type="submit" ng-click="yn('NO')"><span class="glyphicon glyphicon-remove danger"></span>
+          </button>
+
+        </form>
+
+      </div>
+
+      <div ng-if="question.Type == 'MultiOption'">
+
+        <div class="funkyradio">
+          <div ng-repeat="answer in question.Options" class="funkyradio-{{checkboxStyles[$index % 6]}}">
+            <input type="checkbox" name="checkbox" id="{{answer}}"/>
+            <label for="{{answer}}">{{answer}}</label>
+          </div>
+        </div>
+        <br/>
+        <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-ok success"></span>
+        </button>
+
+      </div>
+
+      <div ng-if="question.Type == 'Freeform'">
+        <form id="loginform" class="form-horizontal" role="form" ng-submit="ft()">
+
+        <textarea class="form-control" rows="5" id="comment"></textarea>
+        <br/>
+        <button class="btn btn-success" type="submit"><span class="glyphicon glyphicon-ok success"></span>
+        </button>
+      </form>
+
+      </div>
 
     </div>
-  </div>
 </div>
 
+
 <div id="footer">
-  <span class="glyphicon glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+  <!--<span class="glyphicon glyphicon glyphicon-chevron-left" aria-hidden="true"></span>-->
   {{index}} of {{count}}
-  <span class="glyphicon glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+  <!--<span class="glyphicon glyphicon glyphicon-chevron-right" aria-hidden="true"></span>-->
 </div>
