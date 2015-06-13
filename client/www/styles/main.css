@@ -6,7 +6,7 @@
 }
 
 body {
-  background: url(../images/autumn.jpeg)  no-repeat center 53px fixed;
+  background: url(../images/autumn.jpeg) no-repeat center 53px fixed;
   height: 100%;
 }
 
@@ -23,6 +23,7 @@ body {
   border-bottom: 1px solid #e5e5e5;
   margin-bottom: 10px;
 }
+
 /* Make the masthead heading the same height as the navigation */
 .header h3 {
   margin-top: 0;
@@ -34,7 +35,7 @@ body {
 #footer {
   height: 60px;
   background-color: #f5f5f5;
-  text-align:center;
+  text-align: center;
 }
 
 .container-narrow > hr {
@@ -46,8 +47,9 @@ body {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;
 }
+
 .jumbotron .btn {
-  font-size: 21px;
+  font-size: 16pt;
   padding: 14px 24px;
 }
 
@@ -55,6 +57,7 @@ body {
 .marketing {
   margin: 40px 0;
 }
+
 .marketing p + h4 {
   margin-top: 28px;
 }
@@ -64,26 +67,28 @@ body {
   .container {
     max-width: 730px;
   }
-
-  /* Remove the padding we set earlier */
-  .header,
-  .marketing,
-  .footer {
-    padding-left: 0;
-    padding-right: 0;
-  }
-
-  /* Remove the bottom border on the jumbotron for visual effect */
-  .jumbotron {
-    border-bottom: 0;
-    opacity:0.9;
-  }
 }
 
-.success {
-  background-color: rgb(92, 184, 92);
+/* Remove the padding we set earlier */
+.header,
+.marketing,
+.footer {
+  padding-left: 0;
+  padding-right: 0;
 }
 
-.danger {
-  background-color: rgb(217, 83, 79);
+/* Remove the bottom border on the jumbotron for visual effect */
+.jumbotron {
+  border-bottom: 0;
+  opacity: 0.9;
 }
+
+.jumbotron p {
+  font-size: 16pt;
+}
+
+.jumbotron #surveylist .btn {
+  width: 100%;
+  margin-bottom: 10px;
+}
+

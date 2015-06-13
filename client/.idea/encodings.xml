@@ -3,20 +3,26 @@
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false">
     <file url="file://$PROJECT_DIR$/.bowerrc" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/bower.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/package.json" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/test/spec/controllers/login.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/www/package.json" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/scripts/app.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/www/scripts/controllers/complete.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/scripts/controllers/login.js" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/www/scripts/controllers/survey.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/www/scripts/controllers/question.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/www/scripts/controllers/questionnaire.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/scripts/controllers/surveys.js" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/www/scripts/services/Survey.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/scripts/services/SurveyRequestFactory.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/www/scripts/services/SurveySingleton.js" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/styles/main.css" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/styles/sticky.css" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/www/views/about.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/www/views/complete.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/views/login.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/views/main.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/views/q_ft.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/views/q_mc.html" charset="UTF-8" />
-    <file url="file://$PROJECT_DIR$/www/views/survey.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/www/views/question.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/www/views/questionnaire.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/www/views/surveys.html" charset="UTF-8" />
   </component>
 </project>

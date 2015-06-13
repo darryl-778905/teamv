@@ -3,7 +3,7 @@
 describe('Controller: MainCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('angularTestApp'));
+  beforeEach(module('TeamVSurveyClient'));
 
   var MainCtrl,
     scope;

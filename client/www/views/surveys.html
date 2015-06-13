@@ -1,7 +1,7 @@
 <div class="jumbotron">
 
-  <div ng-repeat="survey in surveys">
-    <button class="btn btn-primary" ng-click="goSurvey(survey)">{{survey.Description}}</button>
+  <div id="surveylist" ng-repeat="survey in surveys">
+    <button class="btn btn-primary" ng-click="goSurvey(survey)"><span class="glyphicon glyphicon-check"></span> {{survey.Description}}</button>
   </div>
 
 </div>

@@ -1,5 +1,6 @@
 {
-  "name": "angulartest",
+  "main": "index.html",
+  "name": "TeamV",
   "version": "0.0.0",
   "dependencies": {},
   "repository": {},
@@ -35,6 +36,11 @@
     "node": ">=0.10.0"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt test",
+    "start": "nw www"
+  },
+  "window": {
+    "toolbar": false,
+    "frame": false
   }
 }
