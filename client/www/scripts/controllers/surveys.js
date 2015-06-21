@@ -8,24 +8,26 @@
  * Controller of the TeamVSurveyClient
  */
 angular.module('TeamVSurveyClient')
-  .controller('SurveysCtrl', ['$scope', '$location', 'SurveySingleton',
-    function ($scope, $location, SurveySingleton) {
-			console.log('About to call getSurveys()');
+  .controller('SurveysCtrl', ['$scope', '$location', 'SurveySingleton', '$localStorage',
+    function ($scope, $location, SurveySingleton, $localStorage) {
+      console.log('About to call getSurveys()');
 
       function getSurveys() {
-        SurveySingleton.list().then(function(data){
-           $scope.surveys = data.data;
-           console.log(data);
-         });
+        SurveySingleton.list().then(function(data) {
+          $scope.surveys = data.data;
+        });
+        //var surveys = SurveySingleton.getSurveys();
+        //$scope.surveys = JSON.parse(JSON.stringify(surveys));
+        //console.log(data);
       }
 
-          //.success(function (surveys) {
-          //  $scope.surveys = surveys;
-          //  console.log($scope.surveys);
-          //})
-          //.error(function (error) {
-          //  console.log(error);
-          //});
+      //.success(function (surveys) {
+      //  $scope.surveys = surveys;
+      //  console.log($scope.surveys);
+      //})
+      //.error(function (error) {
+      //  console.log(error);
+      //});
       //}
 
       getSurveys();
@@ -38,5 +40,5 @@ angular.module('TeamVSurveyClient')
         $location.path('/survey/' + survey.Id);
       };
 
-		}
-	]);
+    }
+  ]);

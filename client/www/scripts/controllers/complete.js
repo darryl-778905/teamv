@@ -13,19 +13,18 @@ angular.module('TeamVSurveyClient')
 
       function getSurvey() {
         console.log('Loading surveys');
-        SurveySingleton.list().then(function (data) {
-          $scope.surveys = data.data;
+        var data = SurveySingleton.local();
+        $scope.surveys = data.data;
 
-          console.log($scope.surveys);
+        console.log($scope.surveys);
 
-          var survey = {};
-          console.log('Searching for survey [' + $routeParams.survey_id + '] in surveys ' + $scope.surveys.length);
-          angular.forEach($scope.surveys, function(item){
-            if (item.Id == $routeParams.survey_id) {
-              $scope.questionnaire = item;
-              console.log('Found questionnaire' + $scope.questionnaire);
-            }
-          });
+        var survey = {};
+        console.log('Searching for survey [' + $routeParams.survey_id + '] in surveys ' + $scope.surveys.length);
+        angular.forEach($scope.surveys, function(item){
+          if (item.Id == $routeParams.survey_id) {
+            $scope.questionnaire = item;
+            console.log('Found questionnaire' + $scope.questionnaire);
+          }
         });
       }
 

@@ -21,7 +21,7 @@ angular.module('TeamVSurveyClient')
     };
 
     dataFactory.postPollResult = function (dataItem) {
-		console.log('SurveyRequestFactory.postPollResult');
+		console.log('SurveyRequestFactory.postPollResult:' + JSON.stringify(dataItem));
 		return $http.post(urlBase + 'PollResult/', dataItem);
     };
 
