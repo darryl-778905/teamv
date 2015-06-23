@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using MobilePoll.Application.Commands;
 using MobilePoll.Bus;
-using MobilePoll.MessageContracts;
-using MobilePoll.MessageContracts.Commands;
+using MobilePoll.DataModel;
 using MobilePoll.Persistence;
 
 namespace MobilePoll.Web.Api.Controllers

@@ -1,9 +1,9 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using MobilePoll.Application.Events;
 using MobilePoll.Application.Parsers;
 using MobilePoll.Application.Tests.StubData;
 using MobilePoll.Application.Tests.Stubs;
-using MobilePoll.MessageContracts.Events;
 using Shouldly;
 
 namespace MobilePoll.Application.Tests

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using MobilePoll.Application.Parsers;
 using MobilePoll.Bus;
-using MobilePoll.MessageContracts;
+using MobilePoll.DataModel;
 
 namespace MobilePoll.Application
 {

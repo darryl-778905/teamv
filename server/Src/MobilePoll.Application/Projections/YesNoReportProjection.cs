@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
+using MobilePoll.Application.Events;
 using MobilePoll.Bus;
 using MobilePoll.DataModel.Reports;
-using MobilePoll.MessageContracts.Events;
 using MobilePoll.Persistence;
 
 namespace MobilePoll.Application.Projections

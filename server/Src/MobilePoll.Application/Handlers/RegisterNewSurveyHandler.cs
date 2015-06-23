@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Linq;
+using MobilePoll.Application.Commands;
 using MobilePoll.Bus;
-using MobilePoll.MessageContracts;
-using MobilePoll.MessageContracts.Commands;
+using MobilePoll.DataModel;
 using MobilePoll.Persistence;
 
 namespace MobilePoll.Application.Handlers
