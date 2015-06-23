@@ -1,5 +1,4 @@
 ﻿using MobilePoll.DataModel;
-using MobilePoll.MessageContracts;
 
 namespace MobilePoll.Application.Tests.StubData
 {

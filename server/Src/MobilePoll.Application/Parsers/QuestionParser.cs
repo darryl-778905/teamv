@@ -2,7 +2,6 @@ using System;
 using System.Linq;
 using MobilePoll.Bus;
 using MobilePoll.DataModel;
-using MobilePoll.MessageContracts;
 
 namespace MobilePoll.Application.Parsers
 {

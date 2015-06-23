@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Web.Http;
+using MobilePoll.Application.Commands;
 using MobilePoll.Application.Wireup;
 using MobilePoll.DataModel.TestData;
 using MobilePoll.Infrastructure.Wireup;
 using MobilePoll.Ioc;
 using MobilePoll.Logging;
-using MobilePoll.MessageContracts.Commands;
 using MobilePoll.Web.Api.Filters;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Serialization;

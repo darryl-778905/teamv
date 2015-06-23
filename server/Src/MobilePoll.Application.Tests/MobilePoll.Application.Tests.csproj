@@ -80,10 +80,6 @@
       <Project>{833908F6-6ED4-430D-9336-6053B061294B}</Project>
       <Name>MobilePoll.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MobilePoll.MessageContracts\MobilePoll.MessageContracts.csproj">
-      <Project>{6DBA6566-8E28-41A2-A201-EDA984108CF3}</Project>
-      <Name>MobilePoll.MessageContracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MobilePoll\MobilePoll.csproj">
       <Project>{d272b0d3-3234-4ff3-b143-a298e49a6947}</Project>
       <Name>MobilePoll</Name>

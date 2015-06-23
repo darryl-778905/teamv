@@ -1,6 +1,6 @@
-﻿using MobilePoll.Bus;
+﻿using MobilePoll.Application.Commands;
+using MobilePoll.Bus;
 using MobilePoll.DataModel;
-using MobilePoll.MessageContracts.Commands;
 using MobilePoll.Persistence;
 
 namespace MobilePoll.Application.Handlers

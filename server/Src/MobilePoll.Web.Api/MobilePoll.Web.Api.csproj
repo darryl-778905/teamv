@@ -123,17 +123,10 @@
       <Project>{833908f6-6ed4-430d-9336-6053b061294b}</Project>
       <Name>MobilePoll.Infrastructure</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MobilePoll.MessageContracts\MobilePoll.MessageContracts.csproj">
-      <Project>{6DBA6566-8E28-41A2-A201-EDA984108CF3}</Project>
-      <Name>MobilePoll.MessageContracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\MobilePoll\MobilePoll.csproj">
       <Project>{d272b0d3-3234-4ff3-b143-a298e49a6947}</Project>
       <Name>MobilePoll</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Readme.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />

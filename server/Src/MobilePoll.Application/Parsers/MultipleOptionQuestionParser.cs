@@ -1,6 +1,6 @@
 using System;
-using MobilePoll.MessageContracts;
-using MobilePoll.MessageContracts.Events;
+using MobilePoll.Application.Events;
+using MobilePoll.DataModel;
 
 namespace MobilePoll.Application.Parsers
 {

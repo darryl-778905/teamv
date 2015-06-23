@@ -7,7 +7,7 @@ namespace MobilePoll.Infrastructure.Persistence.Mongo
     {
         private const string ConnectionString = "mongodb://localhost:27017";
         public static bool DropDatabaseOnStartup = false;
-        private MongoServer server;
+        private readonly MongoServer server;
 
         static MongoUnitOfWork()
         {

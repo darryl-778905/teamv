@@ -39,15 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\RegisterNewSurvey.cs" />
-    <Compile Include="Commands\SavePollResult.cs" />
-    <Compile Include="Events\FreeformAnswerReceived.cs" />
-    <Compile Include="ISurveyAnswerEvent.cs" />
-    <Compile Include="Events\MultipleOptionAnswerReceived.cs" />
-    <Compile Include="Events\YesNoAnswerReceived.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Survey.cs" />
-    <Compile Include="SurveyQuestion.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\MobilePoll\MobilePoll.csproj">
